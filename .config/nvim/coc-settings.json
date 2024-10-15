@@ -1,0 +1,79 @@
+{
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "➤",
+  "diagnostic.checkCurrentLine": true,
+  
+  "suggest.noselect": false,
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+  "suggest.keepCompleteopt": true,
+  "suggest.triggerCharacters": {
+    "html": ["<"],
+    "default": []
+  },
+
+  "prettier.printWidth": 120,
+  "prettier.bracketSameLine": true,
+  "prettier.html.selfClosingSlash": "never",
+
+  "snippets.ultisnips.pythonPrompt": false,
+
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  },
+
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "scss",
+    "html",
+    "markdown",
+    "typescriptreact",
+    "typescript",
+    "javascriptreact",
+    "javascript",
+    "json",
+    "graphql"
+  ],
+
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.wordBasedSuggestions": false
+  },
+
+  "rust-analyzer": {
+    "inlayHints": {
+      "typeHintsWithVariable": false,
+      "chainingHints": false,
+      "typeHints": false,
+      "parameterHints": false
+    },
+    "check": {
+      "command": "clippy"
+    },
+    "completion": {
+      "callable": {
+        "snippets": "add_parentheses"
+      }
+    },
+    "procMacro": {
+      "ignored": {
+        "async_trait": ["async_trait"]
+      }
+    },
+    "rustfmt": {
+      "extraArgs": ["+nightly"],
+      "rangeFormatting": {
+        "enable": true
+      }
+    },
+    "diagnostics": {
+      "enable": true
+    }
+  }
+}
+
