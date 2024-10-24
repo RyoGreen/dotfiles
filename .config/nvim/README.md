@@ -1,5 +1,10 @@
 # vim-setting
 
+## language server
+
+- gopls
+- typescript-language-server
+
 ## path
 
 - /Users/(local_user)/.config/nvim
