@@ -4,7 +4,7 @@
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "➤",
   "diagnostic.checkCurrentLine": true,
-  
+
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "suggest.keepCompleteopt": true,
@@ -24,6 +24,12 @@
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
+    },
+    "typescript": {
+      "command": "typescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["typescript", "typescriptreact"],
+      "rootPatterns": ["package.json", "tsconfig.json", ".vim/", ".git/"]
     }
   },
 
@@ -74,6 +80,17 @@
     "diagnostics": {
       "enable": true
     }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  "tsserver": {
+    "enable": true,
+    "trace.server": "verbose",
+    "preferences": {
+      "importModuleSpecifier": "relative"
+    }
   }
 }
-
