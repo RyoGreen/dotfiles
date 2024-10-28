@@ -8,6 +8,8 @@ require('telescope').setup{
   }
 }
 
+require'lspconfig'.ts_ls.setup{}
+
 local status, bufferline = pcall(require, "bufferline")
 if not status then return end
 
