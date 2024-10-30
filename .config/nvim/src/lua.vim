@@ -9,7 +9,24 @@ require('telescope').setup{
 }
 
 require'lspconfig'.ts_ls.setup{}
-
+require('lspconfig').rust_analyzer.setup{
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "crate"
+      },
+      cargo = {
+        allFeatures = true,
+      },
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
+}
 local status, bufferline = pcall(require, "bufferline")
 if not status then return end
 
