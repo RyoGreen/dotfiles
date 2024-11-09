@@ -10,7 +10,7 @@ nnoremap qq :NERDTreeToggle<CR>
 nnoremap <C-f> :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
 nmap sh <C-w>t
 nmap sl <C-w>w
-map sd :bp<bar>sp<bar>bn<bar>bd<CR>
+map <C-q> :bp<bar>sp<bar>bn<bar>bd<CR>
 inoremap <expr> { InputParentheses("{")
 inoremap <expr> [ InputParentheses("[")
 inoremap <expr> ( InputParentheses("(")
@@ -37,8 +37,6 @@ inoremap <silent> <C-h> <Esc>$a
 inoremap <silent> <S-CR> <Esc>$a<CR>
 nnoremap <silent> <C-s> :w<CR>
 inoremap <silent> <C-s> <C-c>:w<CR>
-nnoremap <silent> <C-q> :q!<CR>
-inoremap <silent> <C-q> <Esc>:q!<CR>
 nnoremap <silent> <C-b> :wq!<CR>
 inoremap <silent> <C-b> <Esc>:wq!<CR>
 nnoremap <silent> <CR> i

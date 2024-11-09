@@ -79,7 +79,7 @@ if not status then return end
 
 vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
 vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
-vim.keymap.set('n', '<C-q>', function()
+vim.keymap.set('n', 'sd', function()
   vim.cmd('bufdo bd')
   vim.cmd('Dashboard')
 end, { silent = true })
