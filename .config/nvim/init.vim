@@ -1,5 +1,6 @@
 let $LANG='en_US.UTF-8'
 
+let mapleader = " "
 syntax enable
 filetype plugin indent on
 runtime ./src/set.vim

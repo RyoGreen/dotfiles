@@ -24,5 +24,3 @@ let ayucolor="dark"
 let g:rust_analyzer_completion_enable_autoimport = v:false
 colorscheme ayu
 
-let mapleader = " "
-

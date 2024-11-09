@@ -6,7 +6,6 @@ nmap <S-Tab> :tabprev<Return>
 nmap <Tab> :tabnext<Return>
 nmap sv :vsplit<Return><C-w><C-w>
 nnoremap sn :<C-u>sp<CR><C-w>j
-nnoremap qq :NERDTreeToggle<CR>
 nnoremap <C-f> :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
 nmap sh <C-w>t
 nmap sl <C-w>w
@@ -49,10 +48,10 @@ nnoremap   <silent>   <F8>    :FloatermPrev<CR>
 tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
 nnoremap   <silent>   <F9>    :FloatermNext<CR>
 tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   ww   :FloatermToggle<CR>
-tnoremap   <silent>   ww   <C-\><C-n>:FloatermToggle<CR>
 hi Floaterm guibg=black
 hi FloatermBorder guibg=orange guifg=cyan
+nnoremap <silent> <leader>q :NERDTreeToggle<CR>
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1)
                               \: "\<C-g>u\<TAB>\<c-r>=coc#on_enter()\<CR>"
