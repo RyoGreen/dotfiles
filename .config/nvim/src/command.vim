@@ -38,6 +38,8 @@ nnoremap <silent> <C-s> :w<CR>
 inoremap <silent> <C-s> <C-c>:w<CR>
 nnoremap <silent> <C-b> :wq!<CR>
 inoremap <silent> <C-b> <Esc>:wq!<CR>
+nnoremap   <silent>   ww   :FloatermToggle<CR>
+tnoremap   <silent>   ww   <C-\><C-n>:FloatermToggle<CR>
 nnoremap <silent> <CR> i
 inoremap <silent> <C-l> <ESC>
 nnoremap <silent> <C-l> <ESC>
