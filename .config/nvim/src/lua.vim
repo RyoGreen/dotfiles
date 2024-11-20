@@ -42,7 +42,7 @@ require('lspconfig').rust_analyzer.setup{
     ["rust-analyzer"] = {
       imports = { granularity = { group = "module" }, prefix = "crate" },
       cargo = { allFeatures = true },
-      checkOnSave = { command = "clippy" },
+      -- checkOnSave = { command = "clippy" },
     },
   },
 }
