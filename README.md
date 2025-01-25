@@ -1,6 +1,6 @@
 # dotfiles
 
-## .skhdrc
+# .skhdrc
 
 ## Terminal and App Launch
 
