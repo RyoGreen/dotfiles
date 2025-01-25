@@ -2,7 +2,7 @@
 
 # .skhdrc
 
-## Terminal and App Launch
+### Terminal and App Launch
 
 | **Shortcut**      | **Action**                       |
 | ----------------- | -------------------------------- |
@@ -11,7 +11,7 @@
 
 ---
 
-## Window Focus
+### Window Focus
 
 | **Shortcut** | **Action**                           |
 | ------------ | ------------------------------------ |
@@ -25,7 +25,7 @@
 
 ---
 
-## Swap Windows
+### Swap Windows
 
 | **Shortcut**      | **Action**                        |
 | ----------------- | --------------------------------- |
@@ -37,7 +37,7 @@
 
 ---
 
-## Move Windows
+### Move Windows
 
 | **Shortcut**      | **Action**                      |
 | ----------------- | ------------------------------- |
@@ -48,7 +48,7 @@
 
 ---
 
-## Window Resizing
+### Window Resizing
 
 | **Shortcut**          | **Action**                           |
 | --------------------- | ------------------------------------ |
@@ -60,7 +60,7 @@
 
 ---
 
-## Desktop Operations
+### Desktop Operations
 
 | **Shortcut**         | **Action**                                                 |
 | -------------------- | ---------------------------------------------------------- |
@@ -73,7 +73,7 @@
 
 ---
 
-## Multi-Monitor Operations
+### Multi-Monitor Operations
 
 | **Shortcut**     | **Action**                                          |
 | ---------------- | --------------------------------------------------- |
@@ -86,7 +86,7 @@
 
 ---
 
-## Window Adjustment and Toggle Operations
+### Window Adjustment and Toggle Operations
 
 | **Shortcut**     | **Action**                              |
 | ---------------- | --------------------------------------- |
