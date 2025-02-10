@@ -29,13 +29,13 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 - jetBrain mono
 
+## ag
+
+- https://github.com/ggreer/the_silver_searcher
+- let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
+
 # visual studio code
 
 ## short cut key
 
 - close tab -> [view:Close Editor] When:- Source:User
-
-## ag
-
-- https://github.com/ggreer/the_silver_searcher
-- let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
