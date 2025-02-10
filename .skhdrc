@@ -75,4 +75,5 @@ ctrl + alt - k : yabai -m window --insert north
 ctrl + alt - l : yabai -m window --insert east
 ctrl + alt - i : yabai -m window --insert stack
 
-
+# toggle window fullscreen zoom
+alt - f : yabai -m window --toggle zoom-fullscreen
