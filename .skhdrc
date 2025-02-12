@@ -53,7 +53,7 @@ cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
 # send window to desktop and follow focus
 shift + cmd - x : yabai -m window --space recent && yabai -m space --focus recent
 # focus monitor
-ctrl + alt - x  : yabai -m display --focus recent
+ctrl - y  : yabai -m display --focus recent
 ctrl + alt - z  : yabai -m display --focus prev
 ctrl + alt - c  : yabai -m display --focus next
 ctrl + alt - 1  : yabai -m display --focus 1
