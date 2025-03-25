@@ -1,18 +1,8 @@
 # dotfiles
 
 ```
-ln -s ~/dotfiles/.config/nvim ~/.config/nvim
-ln -s ~/dotfiles/.skhdrc ~/.skhdrc
-ln -s ~/dotfiles/.yabairc ~/.yabairc
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-
-brew install neovim skhd koekeishiya/formulae/yabai tmux
-
-sudo yabai --install-service
-brew services start yabai
-
-skhd --install-service
-brew services start skhd
+chmod +x ~/dotfiles/setup.sh
+~/dotfiles/setup.sh
 ```
 
 # .skhdrc
@@ -115,3 +105,7 @@ brew services start skhd
 | `ctrl + alt + a` | Set desktop layout to BSP               |
 | `ctrl + alt + d` | Set desktop layout to floating          |
 | `ctrl + alt + s` | Toggle between BSP and floating layouts |
+
+```
+
+```
