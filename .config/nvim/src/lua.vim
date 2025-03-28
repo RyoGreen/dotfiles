@@ -26,7 +26,7 @@ require('dashboard').setup {
 -- Telescope settings
 require('telescope').setup{ 
   defaults = { 
-    file_ignore_patterns = { "node_modules", "target/debug" },
+    file_ignore_patterns = { "node_modules", "target/debug", "dist" },
     preview = false,
     mappings = {
       i = { ["<C-f>"] = require('telescope.actions').close },
