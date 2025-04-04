@@ -5,6 +5,14 @@ chmod +x ~/dotfiles/setup.sh
 ~/dotfiles/setup.sh
 ```
 
+# Tools
+
+## alfred
+
+```
+https://www.alfredapp.com/
+```
+
 # .skhdrc
 
 ### Terminal and App Launch
