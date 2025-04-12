@@ -1,5 +1,4 @@
 set shell=/bin/zsh
-set pastetoggle=<F2>
 set shiftwidth=4
 set tabstop=4
 set expandtab
