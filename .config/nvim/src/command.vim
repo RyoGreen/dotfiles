@@ -71,7 +71,12 @@ augroup GoMappings
     autocmd FileType go nnoremap <buffer> <leader>i :GoImplement<CR>
     autocmd FileType go nnoremap <buffer> <leader>r :GoReferrers<CR>
 augroup END
-
+augroup TypescriptMappings
+    autocmd!
+    autocmd FileType typescript nmap <silent> <C-]> <Plug>(coc-definition)
+    autocmd FileType typescript nmap <silent> gd <Plug>(coc-implementation)
+    autocmd FileType typescript nnoremap <buffer> <C-t> <C-o>
+augroup END
 augroup RustMappings
     autocmd!
     autocmd FileType rust nmap <silent> <C-]> <Plug>(coc-definition)
