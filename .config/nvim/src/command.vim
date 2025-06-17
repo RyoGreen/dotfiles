@@ -81,6 +81,7 @@ augroup END
 augroup RustMappings
     autocmd!
     autocmd FileType rust nmap <silent> gd <Plug>(coc-implementation)
+    autocmd FileType rust nmap <silent> cr <Plug>(coc-references)
     autocmd FileType rust nnoremap <buffer> <silent> <F6> :RustRun<CR>
     autocmd FileType rust nnoremap <buffer> <C-t> <C-o>
 augroup END
