@@ -74,14 +74,14 @@ augroup END
 augroup TypescriptMappings
     autocmd!
     autocmd FileType typescript nmap <silent> <C-]> <Plug>(coc-definition)
-    autocmd FileType typescript nmap <silent> gd <Plug>(coc-implementation)
-    autocmd FileType typescript nmap <silent> cr <Plug>(coc-references)
+    autocmd FileType typescript nmap <buffer> <leader>i <Plug>(coc-implementation)
+    autocmd FileType typescript nmap <buffer> <leader>r  <Plug>(coc-references)
     autocmd FileType typescript nnoremap <buffer> <C-t> <C-o>
 augroup END
 augroup RustMappings
     autocmd!
-    autocmd FileType rust nmap <silent> gd <Plug>(coc-implementation)
-    autocmd FileType rust nmap <silent> cr <Plug>(coc-references)
+    autocmd FileType rust nmap <buffer> <leader>i <Plug>(coc-implementation)
+    autocmd FileType rust nmap <buffer> <leader>r <Plug>(coc-references)
     autocmd FileType rust nnoremap <buffer> <silent> <F6> :RustRun<CR>
     autocmd FileType rust nnoremap <buffer> <C-t> <C-o>
 augroup END
