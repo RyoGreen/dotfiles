@@ -87,4 +87,22 @@ vim.keymap.set('n', 'sd', function()
   vim.cmd('Dashboard')
 end, { silent = true })
 
+require("nvim-tree").setup({
+  view = {
+    width = 30,
+    side = "left",
+  },
+  update_focused_file = {
+    enable = true,
+  },
+  renderer = {
+    icons = {
+      show = {
+        git = true,
+        folder = true,
+        file = true,
+      },
+    },
+  },
+})
 EOF

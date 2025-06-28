@@ -8,7 +8,8 @@ call plug#begin()
 Plug 'voldikss/vim-floaterm'
 Plug 'rking/ag.vim'
 Plug 'ntk148v/vim-horizon'
-Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/vim-goimports'

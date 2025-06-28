@@ -52,8 +52,8 @@ nnoremap   <silent>   <F9>    :FloatermNext<CR>
 tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
 hi Floaterm guibg=black
 hi FloatermBorder guibg=orange guifg=cyan
-nnoremap <silent> <leader>q :NERDTreeToggle<CR>
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
+nnoremap <silent> <leader>q :NvimTreeToggle<CR>
+nnoremap <silent> <leader>f :NvimTreeFindFile<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1)
                               \: "\<C-g>u\<TAB>\<c-r>=coc#on_enter()\<CR>"
