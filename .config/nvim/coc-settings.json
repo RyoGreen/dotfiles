@@ -67,9 +67,7 @@
       }
     },
     "procMacro": {
-      "ignored": {
-        "async_trait": ["async_trait"]
-      }
+      "enable": true
     },
     "rustfmt": {
       "extraArgs": ["+nightly"],
