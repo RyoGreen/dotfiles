@@ -14,7 +14,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/vim-goimports'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'ayu-theme/ayu-vim'
 Plug 'prettier/vim-prettier', {
 	\ 'do': 'yarn install',
 	\ 'for': ['javascript', 'typescript', 'css',
@@ -33,9 +32,9 @@ Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
-Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvimdev/dashboard-nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
 runtime ./src/command.vim
@@ -43,7 +42,6 @@ runtime ./src/func.vim
 runtime ./src/let.vim
 runtime ./src/lua.vim
 
-" 一時的な処理
 lua << EOF
 for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
     local default_diagnostic_handler = vim.lsp.handlers[method]
@@ -55,3 +53,6 @@ for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) d
     end
 end
 EOF
+syntax on
+set background=dark
+colorscheme candy
