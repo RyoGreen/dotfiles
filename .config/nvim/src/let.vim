@@ -17,10 +17,5 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:prettier#autoformat = 1
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.tpl'
 let g:rustfmt_autosave = 1
-let ayucolor="light" 
-let ayucolor="mirage" 
-let ayucolor="dark"
 let NERDTreeShowHidden=1
 let g:rust_analyzer_completion_enable_autoimport = v:false
-colorscheme ayu
-
