@@ -10,6 +10,8 @@ if status then
                 "*.pyc", "__pycache__", ".DS_Store"
             },
             preview = true,
+            border = true,
+            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
             layout_strategy = "horizontal",
             layout_config = {
                 horizontal = {
@@ -41,11 +43,15 @@ if status then
         pickers = {
             find_files = {
                 find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+                border = true,
+                borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
             },
             live_grep = {
                 additional_args = function()
                     return {"--hidden", "--glob", "!**/.git/*"}
                 end,
+                border = true,
+                borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
             },
         },
         extensions = {
@@ -78,27 +84,27 @@ local opts = { silent = true }
 
 -- Telescope mappings
 map("n", "<leader>ff", function()
-    require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({}))
+    require("telescope.builtin").find_files()
 end, opts)
 
 map("n", "<leader>fg", function()
-    require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown({}))
+    require("telescope.builtin").live_grep()
 end, opts)
 
 map("n", "<leader>fb", function()
-    require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({}))
+    require("telescope.builtin").buffers()
 end, opts)
 
 map("n", "<leader>fh", function()
-    require("telescope.builtin").help_tags(require("telescope.themes").get_dropdown({}))
+    require("telescope.builtin").help_tags()
 end, opts)
 
 map("n", "<leader>fo", function()
-    require("telescope.builtin").oldfiles(require("telescope.themes").get_dropdown({}))
+    require("telescope.builtin").oldfiles()
 end, opts)
 
 map("n", "<leader>fe", function()
-    require("telescope").extensions.file_browser.file_browser(require("telescope.themes").get_dropdown({}))
+    require("telescope").extensions.file_browser.file_browser()
 end, opts)
 
 -- Quick navigation

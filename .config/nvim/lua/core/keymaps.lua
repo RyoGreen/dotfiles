@@ -32,13 +32,13 @@ map("i", "<S-CR>", "<Esc>$a<CR>", opts)
 
 -- Telescope
 map("n", "<C-f>", function()
-    require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({}))
+    require("telescope.builtin").find_files()
 end, opts)
 
 -- Floaterm
 map("n", "ww", ":FloatermToggle<CR>", opts)
 map("t", "ww", "<C-\\><C-n>:FloatermToggle<CR>", opts)
-map("n", "<CR>", "i", opts)
+-- Removed problematic Enter key mapping
 map("i", "<C-l>", "<ESC>", opts)
 map("n", "<C-l>", "<ESC>", opts)
 
@@ -53,12 +53,4 @@ map("t", "<F9>", "<C-\\><C-n>:FloatermNext<CR>", opts)
 map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>f", ":NvimTreeFindFile<CR>", opts)
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", opts)
-map("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
-
--- COC
-map("i", "<TAB>", "coc#pum#visible() ? coc#pum#next(1) : '<TAB>'", { expr = true, silent = true })
-map("i", "<S-TAB>", "coc#pum#visible() ? coc#pum#prev(1) : '<S-TAB>'", { expr = true, silent = true })
-map("i", "<CR>", "coc#pum#visible() ? coc#pum#confirm() : '<CR>'", { expr = true, silent = true })
-
--- Copilot
-map("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true }) 
+map("n", "<leader>n", ":NvimTreeFocus<CR>", opts) 

@@ -1,97 +1,31 @@
--- Modern completion configuration with nvim-cmp and LuaSnip
+-- Minimal COC configuration for completion only
+-- Enter: 補完を確定
+-- Tab: 次の候補に移動  
+-- Shift+Tab: 前の候補に移動
 
--- nvim-cmp (Modern completion engine)
-local status, cmp = pcall(require, "cmp")
-if status then
-    cmp.setup({
-        snippet = {
-            expand = function(args)
-                require("luasnip").lsp_expand(args.body)
-            end,
-        },
-        mapping = cmp.mapping.preset.insert({
-            ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-            ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<C-Space>"] = cmp.mapping.complete(),
-            ["<C-e>"] = cmp.mapping.abort(),
-            ["<CR>"] = cmp.mapping.confirm({ select = true }),
-            ["<Tab>"] = cmp.mapping.select_next_item(),
-            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-        }),
-        sources = cmp.config.sources({
-            { name = "nvim_lsp", priority = 1000 },
-            { name = "luasnip", priority = 750 },
-            { name = "buffer", priority = 500 },
-            { name = "path", priority = 250 },
-        }),
-        formatting = {
-            format = function(entry, vim_item)
-                vim_item.kind = string.format("%s %s", vim_item.kind, entry.source.name)
-                return vim_item
-            end,
-        },
-        window = {
-            completion = cmp.config.window.bordered(),
-            documentation = cmp.config.window.bordered(),
-        },
-        experimental = {
-            ghost_text = true,
-        },
-    })
-end
+local M = {}
 
--- LuaSnip (Snippet engine)
-local status, luasnip = pcall(require, "luasnip")
-if status then
-    luasnip.config.set_config({
-        history = true,
-        updateevents = "TextChanged,TextChangedI",
-        enable_autosnippets = true,
-    })
+function M.setup()
+    -- Basic COC settings
+    vim.opt.updatetime = 300
+    vim.opt.signcolumn = "yes"
+
+    local keyset = vim.keymap.set
     
-    -- Load snippets
-    require("luasnip.loaders.from_vscode").lazy_load()
-    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+    -- Autocomplete function
+    function _G.check_back_space()
+        local col = vim.fn.col('.') - 1
+        return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+    end
+
+    -- Completion keymaps
+    local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+    
+    keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+    
+    keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+    
+    keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 end
 
--- Key mappings for snippets
-vim.keymap.set("i", "<C-k>", function()
-    if luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-    end
-end, { silent = true })
-
-vim.keymap.set("s", "<C-k>", function()
-    if luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-    end
-end, { silent = true })
-
-vim.keymap.set("i", "<C-j>", function()
-    if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-    end
-end, { silent = true })
-
-vim.keymap.set("s", "<C-j>", function()
-    if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-    end
-end, { silent = true })
-
--- Auto-completion for command line
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "path" },
-        { name = "cmdline" },
-    }),
-})
-
--- Auto-completion for search
-cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = "buffer" },
-    },
-}) 
+return M 

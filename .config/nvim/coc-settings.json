@@ -8,22 +8,36 @@
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "suggest.keepCompleteopt": true,
+  "suggest.enableSnippets": false,
   "suggest.triggerCharacters": {
     "html": ["<"],
     "default": []
   },
+  "suggest.acceptSuggestionOnEnter": "smart",
+  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.timeout": 5000,
+  "suggest.autoTrigger": "always",
+  "suggest.enablePreselect": true,
 
   "prettier.printWidth": 120,
   "prettier.bracketSameLine": true,
   "prettier.html.selfClosingSlash": "never",
 
   "snippets.ultisnips.pythonPrompt": false,
+  "snippets.enable": false,
 
   "languageserver": {
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "filetypes": ["go"],
+      "settings": {
+        "gopls": {
+          "completionDocumentation": true,
+          "usePlaceholders": false,
+          "completionBudget": "1s"
+        }
+      }
     },
     "typescript": {
       "command": "typescript-language-server",
@@ -63,7 +77,7 @@
     },
     "completion": {
       "callable": {
-        "snippets": "add_parentheses"
+        "snippets": "none"
       }
     },
     "procMacro": {
@@ -79,16 +93,34 @@
       "enable": true
     }
   },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.snippetSuggestions": "none"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.snippetSuggestions": "none"
+  },
+  "[javascript]": {
+    "editor.snippetSuggestions": "none"
+  },
+  "[rust]": {
+    "editor.snippetSuggestions": "none"
   },
 
   "tsserver": {
     "enable": true,
     "trace.server": "verbose",
     "preferences": {
-      "importModuleSpecifier": "relative"
+      "importModuleSpecifier": "relative",
+      "includePackageJsonAutoImports": "off",
+      "includeCompletionsForModuleExports": false,
+      "includeCompletionsWithSnippetText": false
     }
   }
 }

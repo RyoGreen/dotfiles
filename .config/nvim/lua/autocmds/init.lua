@@ -32,7 +32,7 @@ vim.keymap.set("i", "'", function() return func.input_quot("'") end, { expr = tr
 vim.keymap.set("i", "\"", function() return func.input_quot("\"") end, { expr = true })
 vim.keymap.set("i", "`", function() return func.input_quot("`") end, { expr = true })
 
-vim.keymap.set("i", "<CR>", function() return func.input_cr() end, { expr = true })
+-- Removed conflicting Enter key mappings
 vim.keymap.set("i", "<Space>", function() return func.input_space() end, { expr = true })
 vim.keymap.set("i", "<BS>", function() return func.input_bs() end, { expr = true })
 
@@ -45,13 +45,10 @@ vim.keymap.set("x", "'", function() return func.clip_in_quot("'") end, { expr = 
 vim.keymap.set("x", "\"", function() return func.clip_in_quot("\"") end, { expr = true })
 vim.keymap.set("x", "`", function() return func.clip_in_quot("`") end, { expr = true })
 
-vim.keymap.set("i", "<CR>", function() return func.return_html_format() end, { expr = true })
-
 -- File type specific mappings
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
     callback = function()
-        vim.keymap.set("n", "<CR>", "<Nop>", { buffer = true })
         vim.keymap.set("n", "<F6>", ":GoRun<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "<leader>i", ":GoImplement<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "<leader>r", ":GoReferrers<CR>", { buffer = true, silent = true })
