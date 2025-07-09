@@ -4,4 +4,5 @@
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.lsp")
-require("plugins.ui") 
+require("plugins.ui")
+require("plugins.theme") 

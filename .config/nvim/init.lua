@@ -35,6 +35,12 @@ require("lazy").setup({
   { "jparise/vim-graphql" },
   { "neovim/nvim-lspconfig" },
   { "nvimdev/dashboard-nvim" },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
 })
 
 -- Load core configuration
