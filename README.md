@@ -1,122 +1,97 @@
-# dotfiles
+# dotfiles for macOS
 
-macOS用のdotfiles設定ファイルです。yabai、skhd、neovim、tmuxなどの設定を含んでいます。
+This repository contains configuration files for macOS, including settings for yabai, skhd, neovim, tmux, and more.
 
-## セットアップ
+## Setup
 
-```bash
-chmod +x ~/dotfiles/setup.sh
-~/dotfiles/setup.sh
-```
+## Required Tools
 
-## 必要なツール
+## Keyboard Shortcuts (.skhdrc)
 
-### Alfred
+### Terminal and App Launch
 
-```
-https://www.alfredapp.com/
-```
+| **Shortcut** | **Action**                     |
+|--------------|-------------------------------|
+| `cmd + return`     | Open Kitty terminal              |
+| `shift + cmd + m`  | Open clipboard URL with mpv      |
 
-## キーボードショートカット (.skhdrc)
+### Window Focus
 
-### ターミナルとアプリ起動
+| **Shortcut** | **Action**                           |
+|--------------|--------------------------------------|
+| `alt + x`          | Focus most recent window          |
+| `alt + h`          | Focus west (left) window          |
+| `alt + j`          | Focus south (down) window         |
+| `alt + k`          | Focus north (up) window           |
+| `alt + l`          | Focus east (right) window         |
+| `alt + z`          | Focus previous stack window       |
+| `alt + c`          | Focus next stack window           |
 
-| **ショートカット** | **アクション**                     |
-| ------------------ | ---------------------------------- |
-| `cmd + return`     | Kittyターミナルを開く              |
-| `shift + cmd + m`  | クリップボードのURLをmpvで開く     |
+### Window Swap
 
----
+| **Shortcut**      | **Action**                        |
+|-------------------|-----------------------------------|
+| `shift + alt + x` | Swap with most recent window      |
+| `shift + alt + h` | Swap with west (left) window      |
+| `shift + alt + j` | Swap with south (down) window     |
+| `shift + alt + k` | Swap with north (up) window       |
+| `shift + alt + l` | Swap with east (right) window     |
 
-### ウィンドウフォーカス
+### Window Move
 
-| **ショートカット** | **アクション**                           |
-| ------------------ | ------------------------------------ |
-| `alt + x`          | 最も最近のウィンドウにフォーカス          |
-| `alt + h`          | 西（左）ウィンドウにフォーカス            |
-| `alt + j`          | 南（下）ウィンドウにフォーカス             |
-| `alt + k`          | 北（上）ウィンドウにフォーカス             |
-| `alt + l`          | 東（右）ウィンドウにフォーカス             |
-| `alt + z`          | 前のスタックウィンドウにフォーカス         |
-| `alt + c`          | 次のスタックウィンドウにフォーカス         |
+| **Shortcut**      | **Action**                      |
+|-------------------|---------------------------------|
+| `shift + cmd + h` | Move window to west (left)      |
+| `shift + cmd + j` | Move window to south (down)     |
+| `shift + cmd + k` | Move window to north (up)       |
+| `shift + cmd + l` | Move window to east (right)     |
 
----
+### Window Resize
 
-### ウィンドウスワップ
+| **Shortcut**          | **Action**                           |
+|-----------------------|--------------------------------------|
+| `shift + alt + 0`     | Evenly adjust window size            |
+| `alt + b`             | Evenly adjust window size            |
+| `shift + alt + up`    | Maximize floating window             |
+| `shift + alt + left`  | Expand floating window to left half  |
+| `shift + alt + right` | Expand floating window to right half |
 
-| **ショートカット**      | **アクション**                        |
-| ----------------- | --------------------------------- |
-| `shift + alt + x` | 最も最近のウィンドウと交換              |
-| `shift + alt + h` | 西（左）ウィンドウと交換              |
-| `shift + alt + j` | 南（下）ウィンドウと交換              |
-| `shift + alt + k` | 北（上）ウィンドウと交換              |
-| `shift + alt + l` | 東（右）ウィンドウと交換              |
+### Desktop Operations
 
----
+| **Shortcut**         | **Action**                                 |
+|----------------------|--------------------------------------------|
+| `cmd + alt + n`      | Create and focus new desktop               |
+| `cmd + alt + w`      | Switch to previous desktop and destroy current |
+| `cmd + alt + x`      | Focus most recent desktop                  |
+| `cmd + alt + z`      | Focus previous desktop                     |
+| `cmd + alt + c`      | Focus next desktop                         |
+| `cmd + alt + 1-9, 0` | Focus desktop 1-10                         |
 
-### ウィンドウ移動
+### Multi-Monitor Operations
 
-| **ショートカット**      | **アクション**                      |
-| ----------------- | ------------------------------- |
-| `shift + cmd + h` | ウィンドウを西（左）に移動          |
-| `shift + cmd + j` | ウィンドウを南（下）に移動          |
-| `shift + cmd + k` | ウィンドウを北（上）に移動          |
-| `shift + cmd + l` | ウィンドウを東（右）に移動          |
+| **Shortcut**     | **Action**                                          |
+|------------------|-----------------------------------------------------|
+| `ctrl + cmd + x` | Move window to most recent monitor and focus        |
+| `ctrl + cmd + z` | Move window to previous monitor and focus           |
+| `ctrl + cmd + c` | Move window to next monitor and focus               |
+| `ctrl + cmd + 1` | Move window to monitor 1 and focus                  |
+| `ctrl + cmd + 2` | Move window to monitor 2 and focus                  |
+| `ctrl + cmd + 3` | Move window to monitor 3 and focus                  |
 
----
+### Window Adjustments and Toggles
 
-### ウィンドウリサイズ
-
-| **ショートカット**          | **アクション**                           |
-| --------------------- | ------------------------------------ |
-| `shift + alt + 0`     | ウィンドウサイズを均等に調整            |
-| `alt + b`             | ウィンドウサイズを均等に調整            |
-| `shift + alt + up`    | フローティングウィンドウを最大化         |
-| `shift + alt + left`  | フローティングウィンドウを左半分に拡大  |
-| `shift + alt + right` | フローティングウィンドウを右半分に拡大  |
-
----
-
-### デスクトップ操作
-
-| **ショートカット**         | **アクション**                                                 |
-| -------------------- | ---------------------------------------------------------- |
-| `cmd + alt + n`      | 新しいデスクトップを作成し、それにフォーカス            |
-| `cmd + alt + w`      | 前のデスクトップに切り替え、現在のデスクトップを破棄    |
-| `cmd + alt + x`      | 最も最近のデスクトップにフォーカス                           |
-| `cmd + alt + z`      | 前のデスクトップにフォーカス                              |
-| `cmd + alt + c`      | 次のデスクトップにフォーカス                                  |
-| `cmd + alt + 1-9, 0` | デスクトップ1-10にフォーカス                                      |
-
----
-
-### マルチモニター操作
-
-| **ショートカット**     | **アクション**                                          |
-| ---------------- | --------------------------------------------------- |
-| `ctrl + cmd + x` | ウィンドウを最も最近のモニターに移動し、それにフォーカス |
-| `ctrl + cmd + z` | ウィンドウを前のモニターに移動し、それにフォーカス    |
-| `ctrl + cmd + c` | ウィンドウを次のモニターに移動し、それにフォーカス        |
-| `ctrl + cmd + 1` | モニター1にウィンドウを移動し、それにフォーカス               |
-| `ctrl + cmd + 2` | モニター2にウィンドウを移動し、それにフォーカス               |
-| `ctrl + cmd + 3` | モニター3にウィンドウを移動し、それにフォーカス               |
-
----
-
-### ウィンドウ調整とトグル操作
-
-| **ショートカット**     | **アクション**                              |
-| ---------------- | --------------------------------------- |
-| `alt + r`        | ウィンドウツリーを90度回転                |
-| `alt + y`        | ウィンドウツリーをY軸に沿って反転            |
-| `alt + x`        | ウィンドウツリーをX軸に沿って反転            |
-| `alt + t`        | ウィンドウのフローティング/アンフローティングを切り替え       |
-| `alt + s`        | ウィンドウのスティッキーモードを切り替え         |
-| `alt + o`        | ウィンドウの常に最前面に表示を切り替え         |
-| `alt + p`        | ピクチャーインピクチャーモードを切り替え          |
-| `ctrl + alt + a` | デスクトップレイアウトをBSPに設定            |
-| `ctrl + alt + d` | デスクトップレイアウトをフローティングに設定        |
-| `ctrl + alt + s` | BSPとフローティングレイアウトを切り替え        |
+| **Shortcut**     | **Action**                              |
+|------------------|-----------------------------------------|
+| `alt + r`        | Rotate window tree 90 degrees           |
+| `alt + y`        | Flip window tree along Y axis           |
+| `alt + x`        | Flip window tree along X axis           |
+| `alt + t`        | Toggle window floating/unfloating       |
+| `alt + s`        | Toggle window sticky mode               |
+| `alt + o`        | Toggle window always on top             |
+| `alt + p`        | Toggle picture-in-picture mode          |
+| `ctrl + alt + a` | Set desktop layout to BSP               |
+| `ctrl + alt + d` | Set desktop layout to floating          |
+| `ctrl + alt + s` | Toggle between BSP and floating layout  |
 
 ```
 

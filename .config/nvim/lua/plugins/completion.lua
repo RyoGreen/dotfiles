@@ -1,8 +1,3 @@
--- Minimal COC configuration for completion only
--- Enter: 補完を確定
--- Tab: 次の候補に移動  
--- Shift+Tab: 前の候補に移動
-
 local M = {}
 
 function M.setup()
@@ -18,7 +13,10 @@ function M.setup()
         return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
     end
 
-    -- Completion keymaps
+    -- Completion key mappings
+    -- Enter: Confirm completion
+    -- Tab: Move to next candidate
+    -- Shift+Tab: Move to previous candidate
     local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
     
     keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)

@@ -1,6 +1,6 @@
--- UI plugins configuration
+-- UI and dashboard configuration
 
--- Dashboard settings
+-- ASCII art and dashboard settings
 local status, dashboard = pcall(require, "dashboard")
 if status then
     dashboard.setup {
@@ -60,7 +60,7 @@ end
 local status, nvim_tree = pcall(require, "nvim-tree")
 if status then
     nvim_tree.setup({
-        -- 基本設定
+        -- Basic settings
         sort_by = "case_sensitive",
         view = {
             width = 30,
@@ -121,9 +121,9 @@ if status then
         actions = {
             open_file = {
                 quit_on_open = false,
-                resize_window = false,  -- リサイズも無効化
+                resize_window = false,  -- Disable resizing
                 window_picker = {
-                    enable = false,  -- ウィンドウピッカーを無効化
+                    enable = false,  -- Disable window picker
                 },
             },
             remove_file = {

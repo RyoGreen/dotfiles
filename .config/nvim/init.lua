@@ -5,10 +5,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- lazy.nvimのパスをruntimepathに追加
+-- Add lazy.nvim path to runtimepath
 vim.opt.rtp:prepend(vim.fn.stdpath("config") .. "/lazy/lazy.nvim")
 
--- lazy.nvimでプラグイン管理
+-- Plugin management with lazy.nvim
 require("lazy").setup({
   { "voldikss/vim-floaterm" },
   { "rking/ag.vim" },
@@ -45,7 +45,7 @@ require("lazy").setup({
 
 -- Load core configuration
 require("core")
--- Load plugins (設定のみ)
+-- Load plugins (settings only)
 require("plugins")
 -- Load utilities
 require("utils")
