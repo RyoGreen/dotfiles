@@ -1,0 +1,21 @@
+# Backup and temporary files
+*~
+*.swp
+*.swo
+*.bak
+
+# macOS system files
+.DS_Store
+
+# Neovim/Lazy.nvim cache and lock files
+.config/nvim/lazy-lock.json
+.config/nvim/lazy/
+.config/nvim/undodir/
+.config/nvim/backup/
+.config/nvim/swap/
+
+# Plugin and build artifacts
+.config/nvim/plugged/
+.config/nvim/site/
+.config/nvim/pack/
+.config/nvim/.netrwhist

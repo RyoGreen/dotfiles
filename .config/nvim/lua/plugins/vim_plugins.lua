@@ -1,9 +1,6 @@
-let $LANG='en_US.UTF-8'
+-- Vim-plug plugin configuration
 
-let mapleader = " "
-syntax enable
-filetype plugin indent on
-runtime ./src/set.vim
+vim.cmd([[
 call plug#begin()
 Plug 'voldikss/vim-floaterm'
 Plug 'rking/ag.vim'
@@ -28,31 +25,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+Plug 'akinsho/bufferline.nvim'
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvimdev/dashboard-nvim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'folke/tokyonight.nvim'
 call plug#end()
+]]) 
 
-runtime ./src/command.vim
-runtime ./src/func.vim
-runtime ./src/let.vim
-runtime ./src/lua.vim
-
-lua << EOF
-for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-    local default_diagnostic_handler = vim.lsp.handlers[method]
-    vim.lsp.handlers[method] = function(err, result, context, config)
-        if err ~= nil and err.code == -32802 then
-            return
-        end
-        return default_diagnostic_handler(err, result, context, config)
-    end
-end
-EOF
-syntax on
-set background=dark
-colorscheme candy

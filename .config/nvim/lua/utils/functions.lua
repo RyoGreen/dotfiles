@@ -1,3 +1,5 @@
+-- Custom utility functions
+
 local M = {}
 
 local function get_next_string(length)
@@ -127,6 +129,44 @@ local function input_bs()
   end
 end
 
+local function clip_in_parentheses(parenthesis)
+  local mode = vim.fn.mode()
+  local parentheses = { ["{"] = "}", ["["] = "]", ["("] = ")" }
+  
+  if mode == "v" then
+    return "\"ac" .. parenthesis .. "<ESC>\"agpi" .. parentheses[parenthesis]
+  elseif mode == "V" then
+    return "\"ac" .. parentheses[parenthesis] .. "<ESC>\"aPi" .. parenthesis .. "<CR><ESC><UP>=%"
+  end
+end
+
+local function clip_in_quot(quot)
+  local mode = vim.fn.mode()
+  if mode == "v" then
+    return "\"ac" .. quot .. "<ESC>\"agpi" .. quot
+  end
+end
+
+local function return_html_format()
+  local next_char = get_next_string(1)
+  local next_two_string = get_next_string(2)
+  local prev_char = get_prev_string(1)
+  
+  if (prev_char == ">" and next_char == "<") or 
+     (prev_char == "{" and next_char == "}") or 
+     (prev_char == "(" and next_char == ")") then
+    return "<CR><Up><Esc>A<S-CR>"
+  else
+    return "<CR>"
+  end
+end
+
+local function check_back_space()
+  local col = vim.fn.col('.') - 1
+  return col == 0 or vim.fn.getline('.')[col - 1]:match('%s') ~= nil
+end
+
+-- Export functions
 M.get_next_string = get_next_string
 M.get_prev_string = get_prev_string
 M.is_alphabet = is_alphabet
@@ -139,5 +179,9 @@ M.input_quot = input_quot
 M.input_cr = input_cr
 M.input_space = input_space
 M.input_bs = input_bs
+M.clip_in_parentheses = clip_in_parentheses
+M.clip_in_quot = clip_in_quot
+M.return_html_format = return_html_format
+M.check_back_space = check_back_space
 
-return M
+return M 
