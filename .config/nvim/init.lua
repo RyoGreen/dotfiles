@@ -28,7 +28,7 @@ require("lazy").setup({
   { "ryanoasis/vim-devicons" },
   { "tpope/vim-fugitive" },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "akinsho/bufferline.nvim", tag = "*" },
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
   { "pangloss/vim-javascript" },
   { "leafgarland/typescript-vim" },
   { "maxmellon/vim-jsx-pretty" },
