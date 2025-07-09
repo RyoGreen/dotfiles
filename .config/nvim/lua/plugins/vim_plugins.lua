@@ -34,3 +34,4 @@ Plug 'nvimdev/dashboard-nvim'
 Plug 'folke/tokyonight.nvim'
 call plug#end()
 ]]) 
+
