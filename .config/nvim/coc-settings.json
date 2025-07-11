@@ -43,12 +43,12 @@
           "staticcheck": true,
           "gofumpt": true,
           "hints": {
-            "assignVariableTypes": true,
-            "compositeLiteralFields": true,
-            "compositeLiteralTypes": true,
-            "functionTypeParameters": true,
-            "parameterNames": true,
-            "rangeVariableTypes": true
+            "assignVariableTypes": false,
+            "compositeLiteralFields": false,
+            "compositeLiteralTypes": false,
+            "functionTypeParameters": false,
+            "parameterNames": false,
+            "rangeVariableTypes": false
           }
         }
       }
@@ -61,24 +61,34 @@
       "settings": {
         "typescript": {
           "inlayHints": {
-            "includeInlayParameterNameHints": "all",
+            "includeInlayParameterNameHints": "none",
             "includeInlayParameterNameHintsWhenArgumentMatchesName": false,
-            "includeInlayFunctionParameterTypeHints": true,
-            "includeInlayVariableTypeHints": true,
-            "includeInlayPropertyDeclarationTypeHints": true,
-            "includeInlayFunctionLikeReturnTypeHints": true,
-            "includeInlayEnumMemberValueHints": true
+            "includeInlayFunctionParameterTypeHints": false,
+            "includeInlayVariableTypeHints": false,
+            "includeInlayPropertyDeclarationTypeHints": false,
+            "includeInlayFunctionLikeReturnTypeHints": false,
+            "includeInlayEnumMemberValueHints": false
+          },
+          "suggest": {
+            "autoImports": true,
+            "includeCompletionsForModuleExports": true,
+            "includeCompletionsWithSnippetText": false
           }
         },
         "javascript": {
           "inlayHints": {
-            "includeInlayParameterNameHints": "all",
+            "includeInlayParameterNameHints": "none",
             "includeInlayParameterNameHintsWhenArgumentMatchesName": false,
-            "includeInlayFunctionParameterTypeHints": true,
-            "includeInlayVariableTypeHints": true,
-            "includeInlayPropertyDeclarationTypeHints": true,
-            "includeInlayFunctionLikeReturnTypeHints": true,
-            "includeInlayEnumMemberValueHints": true
+            "includeInlayFunctionParameterTypeHints": false,
+            "includeInlayVariableTypeHints": false,
+            "includeInlayPropertyDeclarationTypeHints": false,
+            "includeInlayFunctionLikeReturnTypeHints": false,
+            "includeInlayEnumMemberValueHints": false
+          },
+          "suggest": {
+            "autoImports": true,
+            "includeCompletionsForModuleExports": true,
+            "includeCompletionsWithSnippetText": false
           }
         }
       }

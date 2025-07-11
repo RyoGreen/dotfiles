@@ -66,14 +66,14 @@ lspconfig.gopls.setup({
             },
             staticcheck = true,
             gofumpt = true,
-            usePlaceholders = true,
+            usePlaceholders = false,
             hints = {
-                assignVariableTypes = true,
-                compositeLiteralFields = true,
-                compositeLiteralTypes = true,
-                functionTypeParameters = true,
-                parameterNames = true,
-                rangeVariableTypes = true,
+                assignVariableTypes = false,
+                compositeLiteralFields = false,
+                compositeLiteralTypes = false,
+                functionTypeParameters = false,
+                parameterNames = false,
+                rangeVariableTypes = false,
             },
         },
     },
@@ -82,30 +82,40 @@ lspconfig.gopls.setup({
     },
 })
 
--- TypeScript/JavaScript LSP configuration
-lspconfig.tsserver.setup({
+-- TypeScript/JavaScript LSP configuration using ts_ls
+lspconfig.ts_ls.setup({
     on_attach = on_attach,
     settings = {
         typescript = {
             inlayHints = {
-                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHints = "none",
                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionParameterTypeHints = false,
+                includeInlayVariableTypeHints = false,
+                includeInlayPropertyDeclarationTypeHints = false,
+                includeInlayFunctionLikeReturnTypeHints = false,
+                includeInlayEnumMemberValueHints = false,
+            },
+            suggest = {
+                autoImports = true,
+                includeCompletionsForModuleExports = true,
+                includeCompletionsWithSnippetText = false,
             },
         },
         javascript = {
             inlayHints = {
-                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHints = "none",
                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionParameterTypeHints = false,
+                includeInlayVariableTypeHints = false,
+                includeInlayPropertyDeclarationTypeHints = false,
+                includeInlayFunctionLikeReturnTypeHints = false,
+                includeInlayEnumMemberValueHints = false,
+            },
+            suggest = {
+                autoImports = true,
+                includeCompletionsForModuleExports = true,
+                includeCompletionsWithSnippetText = false,
             },
         },
     },
@@ -123,9 +133,14 @@ lspconfig.rust_analyzer.setup({
             cargo = { allFeatures = true },
             checkOnSave = { command = "clippy" },
             inlayHints = {
-                typeHints = true,
-                parameterHints = true,
-                chainingHints = true,
+                typeHints = false,
+                parameterHints = false,
+                chainingHints = false,
+            },
+            completion = {
+                callable = {
+                    snippets = "none"
+                }
             },
         },
     },
@@ -142,27 +157,12 @@ vim.diagnostic.config({
 
 -- Temporary LSP diagnostic handler fix
 for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-  local default_handler = vim.lsp.handlers[method]
-
-  vim.lsp.handlers[method] = function(err, result, ctx, config)
-    if err then
-      if err.code == -32802 then
-        vim.notify(
-          string.format("LSP [%s] returned temporary error (-32802): %s", method, err.message),
-          vim.log.levels.WARN,
-          { title = "LSP Diagnostic" }
-        )
-        return
-      else
-        vim.notify(
-          string.format("LSP [%s] error (%d): %s", method, err.code or -1, err.message),
-          vim.log.levels.ERROR,
-          { title = "LSP Diagnostic" }
-        )
-      end
+    local default_diagnostic_handler = vim.lsp.handlers[method]
+    vim.lsp.handlers[method] = function(err, result, context, config)
+        if err ~= nil and err.code == -32802 then
+            return
+        end
+        return default_diagnostic_handler(err, result, context, config)
     end
-
-    return default_handler(err, result, ctx, config)
-  end
 end
 

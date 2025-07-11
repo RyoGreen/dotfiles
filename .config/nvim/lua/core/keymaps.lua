@@ -78,6 +78,10 @@ map("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
     callback = function()
+        vim.keymap.set("n", "<C-]>", "<Plug>(coc-definition)", { buffer = true, silent = true })
+        vim.keymap.set("n", "gd", "<Plug>(coc-implementation)", { buffer = true, silent = true })
+        vim.keymap.set("n", "cr", "<Plug>(coc-references)", { buffer = true, silent = true })
+        vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
         vim.keymap.set("n", "<CR>", "<Nop>", { buffer = true })
         vim.keymap.set("n", "<F6>", ":GoRun<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "<leader>i", ":GoImplement<CR>", { buffer = true })
@@ -96,13 +100,36 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
+-- TypeScript React mappings
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "typescriptreact",
+    callback = function()
+        vim.keymap.set("n", "<C-]>", "<Plug>(coc-definition)", { buffer = true, silent = true })
+        vim.keymap.set("n", "gd", "<Plug>(coc-implementation)", { buffer = true, silent = true })
+        vim.keymap.set("n", "cr", "<Plug>(coc-references)", { buffer = true, silent = true })
+        vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
+    end
+})
+
+-- JavaScript React mappings
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "javascriptreact",
+    callback = function()
+        vim.keymap.set("n", "<C-]>", "<Plug>(coc-definition)", { buffer = true, silent = true })
+        vim.keymap.set("n", "gd", "<Plug>(coc-implementation)", { buffer = true, silent = true })
+        vim.keymap.set("n", "cr", "<Plug>(coc-references)", { buffer = true, silent = true })
+        vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
+    end
+})
+
 -- Rust mappings
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "rust",
     callback = function()
+        vim.keymap.set("n", "<C-]>", "<Plug>(coc-definition)", { buffer = true, silent = true })
         vim.keymap.set("n", "gd", "<Plug>(coc-implementation)", { buffer = true, silent = true })
         vim.keymap.set("n", "cr", "<Plug>(coc-references)", { buffer = true, silent = true })
-        vim.keymap.set("n", "<F6>", ":RustRun<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
+        vim.keymap.set("n", "<F6>", ":RustRun<CR>", { buffer = true, silent = true })
     end
 }) 
