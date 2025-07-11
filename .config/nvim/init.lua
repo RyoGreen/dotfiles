@@ -23,7 +23,6 @@ require("lazy").setup({
   { "alvan/vim-closetag" },
   { "rust-lang/rust.vim" },
   { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
-  { "neoclide/coc.nvim", branch = "release", lazy = false },
   { "fatih/vim-go", build = ":GoUpdateBinaries" },
   { "ryanoasis/vim-devicons" },
   { "tpope/vim-fugitive" },
@@ -49,5 +48,5 @@ require("core")
 require("plugins")
 -- Load utilities
 require("utils")
--- Load autocmd
+-- Load autocmds
 require("autocmds") 
