@@ -4,7 +4,7 @@
 -- Set leader key early
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
+vim.cmd('language messages en_US.UTF-8')
 -- Add lazy.nvim path to runtimepath
 vim.opt.rtp:prepend(vim.fn.stdpath("config") .. "/lazy/lazy.nvim")
 
@@ -49,5 +49,5 @@ require("core")
 require("plugins")
 -- Load utilities
 require("utils")
--- Load autocmds
+-- Load autocmd
 require("autocmds") 
