@@ -35,15 +35,53 @@
         "gopls": {
           "completionDocumentation": true,
           "usePlaceholders": false,
-          "completionBudget": "1s"
+          "completionBudget": "1s",
+          "analyses": {
+            "unusedparams": true,
+            "shadow": true
+          },
+          "staticcheck": true,
+          "gofumpt": true,
+          "hints": {
+            "assignVariableTypes": true,
+            "compositeLiteralFields": true,
+            "compositeLiteralTypes": true,
+            "functionTypeParameters": true,
+            "parameterNames": true,
+            "rangeVariableTypes": true
+          }
         }
       }
     },
     "typescript": {
       "command": "typescript-language-server",
       "args": ["--stdio"],
-      "filetypes": ["typescript", "typescriptreact"],
-      "rootPatterns": ["package.json", "tsconfig.json", ".vim/", ".git/"]
+      "filetypes": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+      "rootPatterns": ["package.json", "tsconfig.json", "jsconfig.json", ".vim/", ".git/"],
+      "settings": {
+        "typescript": {
+          "inlayHints": {
+            "includeInlayParameterNameHints": "all",
+            "includeInlayParameterNameHintsWhenArgumentMatchesName": false,
+            "includeInlayFunctionParameterTypeHints": true,
+            "includeInlayVariableTypeHints": true,
+            "includeInlayPropertyDeclarationTypeHints": true,
+            "includeInlayFunctionLikeReturnTypeHints": true,
+            "includeInlayEnumMemberValueHints": true
+          }
+        },
+        "javascript": {
+          "inlayHints": {
+            "includeInlayParameterNameHints": "all",
+            "includeInlayParameterNameHintsWhenArgumentMatchesName": false,
+            "includeInlayFunctionParameterTypeHints": true,
+            "includeInlayVariableTypeHints": true,
+            "includeInlayPropertyDeclarationTypeHints": true,
+            "includeInlayFunctionLikeReturnTypeHints": true,
+            "includeInlayEnumMemberValueHints": true
+          }
+        }
+      }
     }
   },
 
@@ -106,7 +144,15 @@
     "editor.formatOnSave": true,
     "editor.snippetSuggestions": "none"
   },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.snippetSuggestions": "none"
+  },
   "[javascript]": {
+    "editor.snippetSuggestions": "none"
+  },
+  "[javascriptreact]": {
     "editor.snippetSuggestions": "none"
   },
   "[rust]": {

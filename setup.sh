@@ -193,6 +193,38 @@ install_software() {
     log "Software installation completed"
 }
 
+# Install LSP language servers for better code navigation
+log "Installing LSP language servers..."
+
+# Install gopls for Go
+if ! command -v gopls &> /dev/null; then
+    log "Installing gopls..."
+    go install golang.org/x/tools/gopls@latest
+    log "✅ gopls installed"
+else
+    log "✅ gopls already installed"
+fi
+
+# Install TypeScript language server
+if ! command -v typescript-language-server &> /dev/null; then
+    log "Installing TypeScript language server..."
+    npm install -g typescript typescript-language-server
+    log "✅ TypeScript language server installed"
+else
+    log "✅ TypeScript language server already installed"
+fi
+
+# Install Rust analyzer (if Rust is installed)
+if command -v rustc &> /dev/null; then
+    if ! command -v rust-analyzer &> /dev/null; then
+        log "Installing rust-analyzer..."
+        rustup component add rust-analyzer
+        log "✅ rust-analyzer installed"
+    else
+        log "✅ rust-analyzer already installed"
+    fi
+fi
+
 # Function to setup fzf
 setup_fzf() {
     log "Setting up fzf keybindings and completions..."
