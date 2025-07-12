@@ -43,34 +43,4 @@ vim.keymap.set("x", "(", function() return func.clip_in_parentheses("(") end, { 
 
 vim.keymap.set("x", "'", function() return func.clip_in_quot("'") end, { expr = true })
 vim.keymap.set("x", "\"", function() return func.clip_in_quot("\"") end, { expr = true })
-vim.keymap.set("x", "`", function() return func.clip_in_quot("`") end, { expr = true })
-
--- File type specific mappings
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "go",
-    callback = function()
-        vim.keymap.set("n", "<F6>", ":GoRun<CR>", { buffer = true, silent = true })
-        vim.keymap.set("n", "<leader>i", ":GoImplement<CR>", { buffer = true, silent = true })
-        vim.keymap.set("n", "<leader>r", ":GoReferrers<CR>", { buffer = true, silent = true })
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "typescript",
-    callback = function()
-        vim.keymap.set("n", "<C-]>", "<Plug>(coc-definition)", { buffer = true, silent = true })
-        vim.keymap.set("n", "<leader>i", "<Plug>(coc-implementation)", { buffer = true, silent = true })
-        vim.keymap.set("n", "<leader>r", "<Plug>(coc-references)", { buffer = true, silent = true })
-        vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true, silent = true })
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "rust",
-    callback = function()
-        vim.keymap.set("n", "<leader>i", "<Plug>(coc-implementation)", { buffer = true, silent = true })
-        vim.keymap.set("n", "<leader>r", "<Plug>(coc-references)", { buffer = true, silent = true })
-        vim.keymap.set("n", "<F6>", ":RustRun<CR>", { buffer = true, silent = true })
-        vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true, silent = true })
-    end,
-}) 
+vim.keymap.set("x", "`", function() return func.clip_in_quot("`") end, { expr = true }) 

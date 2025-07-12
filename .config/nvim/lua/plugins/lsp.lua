@@ -1,23 +1,25 @@
 -- LSP configuration
 
-local status, lspconfig = pcall(require, "lspconfig")
-if not status then
-    return
-end
+vim.lsp.enable('gopls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('tsserver')
 
--- LSP key mappings
+-- LSP key mappings (COC-style)
 local function setup_lsp_keymaps(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
     
-    -- Definition jumping
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    -- COC-style key mappings
+    vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, opts)      -- Definition jump
+    vim.keymap.set('n', 'gd', vim.lsp.buf.implementation, opts)     -- Implementation jump
+    vim.keymap.set('n', 'cr', vim.lsp.buf.references, opts)         -- References
+    vim.keymap.set('n', '<C-t>', '<C-o>', opts)                     -- Jump back
+    
+    -- Additional LSP mappings
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    
-    -- Workspace
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
     vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
@@ -25,8 +27,6 @@ local function setup_lsp_keymaps(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts)
-    
-    -- Diagnostics
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -35,118 +35,11 @@ end
 -- LSP on_attach function
 local function on_attach(client, bufnr)
     setup_lsp_keymaps(client, bufnr)
-    
-    -- Set buffer options
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    
-    -- Highlight references
-    if client.server_capabilities.documentHighlightProvider then
-        vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
-        vim.api.nvim_create_autocmd('CursorHold', {
-            callback = vim.lsp.buf.document_highlight,
-            buffer = bufnr,
-            group = 'lsp_document_highlight'
-        })
-        vim.api.nvim_create_autocmd('CursorMoved', {
-            callback = vim.lsp.buf.clear_references,
-            buffer = bufnr,
-            group = 'lsp_document_highlight'
-        })
-    end
+    print(string.format("LSP client '%s' attached to buffer %d with COC-style keymaps", client.name, bufnr))
 end
 
--- Go LSP configuration
-lspconfig.gopls.setup({
-    on_attach = on_attach,
-    settings = {
-        gopls = {
-            analyses = {
-                unusedparams = true,
-                shadow = true,
-            },
-            staticcheck = true,
-            gofumpt = true,
-            usePlaceholders = false,
-            hints = {
-                assignVariableTypes = false,
-                compositeLiteralFields = false,
-                compositeLiteralTypes = false,
-                functionTypeParameters = false,
-                parameterNames = false,
-                rangeVariableTypes = false,
-            },
-        },
-    },
-    flags = {
-        debounce_text_changes = 150,
-    },
-})
-
--- TypeScript/JavaScript LSP configuration using ts_ls
-lspconfig.ts_ls.setup({
-    on_attach = on_attach,
-    settings = {
-        typescript = {
-            inlayHints = {
-                includeInlayParameterNameHints = "none",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = false,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayEnumMemberValueHints = false,
-            },
-            suggest = {
-                autoImports = true,
-                includeCompletionsForModuleExports = true,
-                includeCompletionsWithSnippetText = false,
-            },
-        },
-        javascript = {
-            inlayHints = {
-                includeInlayParameterNameHints = "none",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = false,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayEnumMemberValueHints = false,
-            },
-            suggest = {
-                autoImports = true,
-                includeCompletionsForModuleExports = true,
-                includeCompletionsWithSnippetText = false,
-            },
-        },
-    },
-    flags = {
-        debounce_text_changes = 150,
-    },
-})
-
--- Rust LSP configuration
-lspconfig.rust_analyzer.setup({
-    on_attach = on_attach,
-    settings = {
-        ["rust-analyzer"] = {
-            imports = { granularity = { group = "module" }, prefix = "crate" },
-            cargo = { allFeatures = true },
-            checkOnSave = { command = "clippy" },
-            inlayHints = {
-                typeHints = false,
-                parameterHints = false,
-                chainingHints = false,
-            },
-            completion = {
-                callable = {
-                    snippets = "none"
-                }
-            },
-        },
-    },
-})
-
--- LSP diagnostic configuration
+-- Diagnostic config
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,
@@ -154,6 +47,31 @@ vim.diagnostic.config({
     update_in_insert = false,
     severity_sort = true,
 })
+
+-- Debug commands for LSP
+vim.api.nvim_create_user_command('LspDebug', function()
+    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+    if #clients == 0 then
+        print("No LSP clients attached to current buffer")
+    else
+        for _, client in ipairs(clients) do
+            print(string.format("LSP Client: %s (id: %d)", client.name, client.id))
+            print(string.format("  Root: %s", client.config.root_dir or "nil"))
+            print(string.format("  Capabilities: %s", vim.inspect(client.server_capabilities)))
+        end
+    end
+end, {})
+
+vim.api.nvim_create_user_command('LspRestart', function()
+    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+    for _, client in ipairs(clients) do
+        vim.lsp.stop_client(client.id)
+    end
+    vim.cmd('LspStart')
+end, {})
+
+-- Note: vim.lsp.enable() automatically handles LSP server startup
+-- No need for manual autocmd triggers
 
 -- Temporary LSP diagnostic handler fix
 for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do

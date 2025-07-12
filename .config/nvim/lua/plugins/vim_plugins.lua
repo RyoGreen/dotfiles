@@ -19,7 +19,6 @@ Plug 'prettier/vim-prettier', {
 Plug 'alvan/vim-closetag'
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
