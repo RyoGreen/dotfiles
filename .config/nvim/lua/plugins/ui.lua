@@ -130,6 +130,16 @@ if status then
                 close_window = true,
             },
         },
+        -- Custom key mappings to disable 's' key
+        on_attach = function(bufnr)
+            local api = require('nvim-tree.api')
+            
+            -- Disable 's' key mapping
+            vim.keymap.set('n', 's', '<Nop>', { buffer = bufnr, noremap = true, silent = true })
+            
+            -- Keep other default mappings if needed
+            -- You can add other custom mappings here
+        end,
         diagnostics = {
             enable = true,
             show_on_dirs = true,
