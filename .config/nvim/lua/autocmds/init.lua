@@ -17,6 +17,30 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "setlocal iskeyword+=@-@",
 })
 
+-- Auto format on save for TypeScript/JavaScript files
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
+    callback = function()
+        -- Try LSP formatting first
+        local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+        local has_formatter = false
+        
+        for _, client in ipairs(clients) do
+            if client.server_capabilities.documentFormattingProvider then
+                has_formatter = true
+                break
+            end
+        end
+        
+        if has_formatter then
+            vim.lsp.buf.format({ async = false })
+        else
+            -- Fallback to Prettier if LSP formatter is not available
+            vim.cmd("Prettier")
+        end
+    end,
+})
+
 -- Input functions (using utils.functions module)
 local func = require('utils.functions')
 

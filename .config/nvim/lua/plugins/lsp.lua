@@ -2,7 +2,29 @@
 
 vim.lsp.enable('gopls')
 vim.lsp.enable('rust_analyzer')
-vim.lsp.enable('tsserver')
+vim.lsp.enable('ts_ls')
+
+-- TypeScript LSP specific configuration
+local function setup_typescript_lsp()
+    -- Since we're using vim.lsp.enable('ts_ls'), we don't need manual lspconfig setup
+    -- The LSP will be automatically configured with default settings
+    -- We can add custom settings through autocmds if needed
+    
+    -- Add custom settings for TypeScript formatting
+    vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            if client and client.name == "ts_ls" then
+                -- Ensure formatting is enabled for ts_ls
+                client.server_capabilities.documentFormattingProvider = true
+                client.server_capabilities.documentRangeFormattingProvider = true
+            end
+        end,
+    })
+end
+
+-- Setup TypeScript LSP with enhanced formatting
+setup_typescript_lsp()
 
 -- LSP key mappings (COC-style)
 local function setup_lsp_keymaps(client, bufnr)
