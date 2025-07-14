@@ -38,9 +38,6 @@ end, opts)
 -- Floaterm
 map("n", "ww", ":FloatermToggle<CR>", opts)
 map("t", "ww", "<C-\\><C-n>:FloatermToggle<CR>", opts)
--- Removed problematic Enter key mapping
-map("i", "<C-l>", "<ESC>", opts)
-map("n", "<C-l>", "<ESC>", opts)
 
 map("n", "<F7>", ":FloatermNew<CR>", opts)
 map("t", "<F7>", "<C-\\><C-n>:FloatermNew<CR>", opts)

@@ -40,25 +40,17 @@ require("lazy").setup({
     priority = 1000,
     opts = {},
   },
-  {
-    "github/copilot.vim",
-    config = function()
-        -- Basic Copilot settings
-        vim.g.copilot_no_tab_map = true
-        vim.g.copilot_assume_mapped = true
-        vim.g.copilot_enabled = 1
-        
-        vim.defer_fn(function()
-          pcall(function()
-            vim.fn["copilot#Accept"]("")
-          end)
+{
+  "github/copilot.vim",
+  event = "InsertEnter",
+  config = function()
+    vim.g.copilot_no_tab_map = true
+    vim.g.copilot_assume_mapped = true
 
-        vim.keymap.set("i", "<C-l>", function()
-          return vim.fn["copilot#Accept"]("<CR>")
-          end, { expr = true, silent = true })
-      end, 100)
-    end,
-  },
+    vim.keymap.set("i", "<C-l>", 'copilot#Accept("")', { expr = true, silent = true, replace_keycodes = false })
+    vim.keymap.set("i", "<C-c>", 'copilot#Dismiss()', { expr = true, silent = true })
+  end,
+},
     -- nvim-cmp & dependencies
   {
     "hrsh7th/nvim-cmp",
