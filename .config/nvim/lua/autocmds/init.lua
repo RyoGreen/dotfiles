@@ -41,6 +41,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+-- Copilot key mappings
+vim.api.nvim_create_autocmd("User", {
+    pattern = "CopilotSetup",
+    callback = function()
+        -- Ensure Copilot key mappings work correctly
+        vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+        vim.api.nvim_set_keymap("i", "<C-c>", 'copilot#Dismiss()', { expr = true, silent = true })
+        vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Next()', { expr = true, silent = true })
+        vim.api.nvim_set_keymap("i", "<C-k>", 'copilot#Previous()', { expr = true, silent = true })
+    end,
+})
+
 -- Input functions (using utils.functions module)
 local func = require('utils.functions')
 

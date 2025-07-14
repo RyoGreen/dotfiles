@@ -6,6 +6,7 @@ require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.ui")
 require("plugins.theme")
+require("plugins.copilot")
 -- Load completion setup
 local completion = require("plugins.completion")
 completion.setup()

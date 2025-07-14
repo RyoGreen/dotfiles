@@ -42,12 +42,7 @@ require("lazy").setup({
   },
   {
     "github/copilot.vim",
-     config = function()
-     vim.g.copilot_no_tab_map = true
-     vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
-     vim.api.nvim_set_keymap("i", "<C-c>", 'copilot#Dismiss()', { expr = true, silent = true })
-    end,
-   },
+  },
     -- nvim-cmp & dependencies
   {
     "hrsh7th/nvim-cmp",
