@@ -42,6 +42,27 @@ require("lazy").setup({
   },
   {
     "github/copilot.vim",
+    config = function()
+        -- Basic Copilot settings
+        vim.g.copilot_no_tab_map = true
+        vim.g.copilot_assume_mapped = true
+        vim.g.copilot_enabled = 1
+        
+        -- Set up key mappings after a short delay to ensure plugin is loaded
+        vim.defer_fn(function()
+            if vim.fn.exists('*copilot#Accept') == 2 then
+                vim.keymap.set("i", "<C-l>", function()
+                    return vim.fn["copilot#Accept"]("<CR>")
+                end, { expr = true, silent = true })
+                
+                vim.keymap.set("i", "<C-c>", function()
+                    return vim.fn["copilot#Dismiss"]()
+                end, { expr = true, silent = true })
+                
+                print("Copilot key mappings configured")
+            end
+        end, 100)
+    end,
   },
     -- nvim-cmp & dependencies
   {
