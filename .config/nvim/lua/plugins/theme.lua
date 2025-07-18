@@ -4,8 +4,8 @@
 local status, tokyonight = pcall(require, "tokyonight")
 if status then
     tokyonight.setup({
-        style = "storm",
-        transparent = false,
+        style = "moon",
+        transparent = true,
         terminal_colors = true,
         styles = {
             comments = { italic = true },
