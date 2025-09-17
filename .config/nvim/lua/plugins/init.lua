@@ -13,4 +13,4 @@ completion.setup()
 -- Prettier configuration
 vim.g["prettier#autoformat"] = 0  -- Disable autoformat to use our custom autocmd
 vim.g["prettier#autoformat_require_pragma"] = 0
-vim.g["prettier#exec_cmd_async"] = 1 
+vim.g["prettier#exec_cmd_async"] = 0 
