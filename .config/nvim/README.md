@@ -34,6 +34,17 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 - https://github.com/ggreer/the_silver_searcher
 - let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
 
+## ripgrep
+```
+cargo install ripgrep
+
+```
+
+## fd
+```
+cargo install fd-find
+```
+
 # visual studio code
 
 ## short cut key
