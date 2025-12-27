@@ -30,11 +30,6 @@ map("n", "<C-h>", "$", opts)
 map("i", "<C-h>", "<Esc>$a", opts)
 map("i", "<S-CR>", "<Esc>$a<CR>", opts)
 
--- Telescope
-map("n", "<C-f>", function()
-    require("telescope.builtin").find_files()
-end, opts)
-
 -- Floaterm
 map("n", "ww", ":FloatermToggle<CR>", opts)
 map("t", "ww", "<C-\\><C-n>:FloatermToggle<CR>", opts)
@@ -51,6 +46,13 @@ map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>f", ":NvimTreeFindFile<CR>", opts)
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", opts)
 map("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
+
+-- Telescope
+map("n", "<C-f>", "<cmd>Telescope find_files<CR>", opts)
+map("n", "<C-l>", "<cmd>Telescope live_grep<CR>", opts)
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
+map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
 
 -- Language-specific mappings
 -- Go mappings
