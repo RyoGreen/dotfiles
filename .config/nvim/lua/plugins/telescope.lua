@@ -1,33 +1,45 @@
 -- Telescope configuration
 
-local status, telescope = pcall(require, "telescope")
-if not status then
-    return
-end
+return {
+  "nvim-telescope/telescope.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  cmd = "Telescope",
 
-telescope.setup{ 
-    defaults = { 
-        file_ignore_patterns = { "node_modules", "target/debug" },
-        preview = false,
+  opts = function()
+    local actions = require("telescope.actions")
+
+    return {
+      defaults = {
+        file_ignore_patterns = {
+          "node_modules",
+          "target/debug",
+          "%.git/",
+        },
+
         border = true,
-        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        layout_config = {
+          width = 0.75,
+        },
+
         mappings = {
-            i = { ["<C-f>"] = require('telescope.actions').close },
-            n = { ["<C-f>"] = require('telescope.actions').close }
-        }
-    },
-    pickers = {
+          i = {
+            ["<Esc>"] = actions.close,
+            ["<C-c>"] = actions.close,
+          },
+          n = {
+            ["<Esc>"] = actions.close,
+          },
+        },
+      },
+
+      pickers = {
         find_files = {
-            border = true,
-            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          hidden = true,
         },
-        live_grep = {
-            border = true,
-            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        },
-        buffers = {
-            border = true,
-            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        }
+      },
     }
-} 
+  end,
+}
+
