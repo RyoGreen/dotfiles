@@ -50,7 +50,7 @@ map("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 -- Telescope
 map("n", "<C-f>", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<C-l>", "<cmd>Telescope live_grep<CR>", opts)
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
+map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", opts)
 map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
 
