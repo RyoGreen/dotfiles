@@ -7,6 +7,7 @@ telescope.setup({
       "node_modules",
       "%target/",
       "%.git/",
+      "dist/",
     },
 
     border = true,
