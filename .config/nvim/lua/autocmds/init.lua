@@ -52,4 +52,4 @@ vim.keymap.set("x", "(", function() return func.clip_in_parentheses("(") end, { 
 
 vim.keymap.set("x", "'", function() return func.clip_in_quot("'") end, { expr = true })
 vim.keymap.set("x", "\"", function() return func.clip_in_quot("\"") end, { expr = true })
-vim.keymap.set("x", "`", function() return func.clip_in_quot("`") end, { expr = true }) 
+vim.keymap.set("x", "`", function() return func.clip_in_quot("`") end, { expr = true })

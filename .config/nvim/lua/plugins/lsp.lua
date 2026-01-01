@@ -9,7 +9,7 @@ local function setup_typescript_lsp()
     -- Since we're using vim.lsp.enable('ts_ls'), we don't need manual lspconfig setup
     -- The LSP will be automatically configured with default settings
     -- We can add custom settings through autocmds if needed
-    
+
     -- Add custom settings for TypeScript formatting
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
@@ -29,13 +29,13 @@ setup_typescript_lsp()
 -- LSP key mappings (COC-style)
 local function setup_lsp_keymaps(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
-    
+
     -- COC-style key mappings
-    vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, opts)      -- Definition jump
-    vim.keymap.set('n', 'gd', vim.lsp.buf.implementation, opts)     -- Implementation jump
-    vim.keymap.set('n', 'cr', vim.lsp.buf.references, opts)         -- References
-    vim.keymap.set('n', '<C-t>', '<C-o>', opts)                     -- Jump back
-    
+    vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, opts)  -- Definition jump
+    vim.keymap.set('n', 'gd', vim.lsp.buf.implementation, opts) -- Implementation jump
+    vim.keymap.set('n', 'cr', vim.lsp.buf.references, opts)     -- References
+    vim.keymap.set('n', '<C-t>', '<C-o>', opts)                 -- Jump back
+
     -- Additional LSP mappings
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -105,4 +105,3 @@ for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) d
         return default_diagnostic_handler(err, result, context, config)
     end
 end
-

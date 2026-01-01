@@ -15,19 +15,19 @@ require("lazy").setup({
   { "ntk148v/vim-horizon" },
   { "nvim-tree/nvim-tree.lua" },
   { "nvim-tree/nvim-web-devicons" },
-  { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end },
+  { "junegunn/fzf",                    build = function() vim.fn["fzf#install"]() end },
   { "sheerun/vim-polyglot" },
   { "mattn/vim-goimports" },
   { "nvim-lua/plenary.nvim" },
-  { "prettier/vim-prettier", build = "yarn install", ft = { "javascript", "typescript", "css", "less", "scss", "json", "graphql", "markdown", "vue", "svelte", "yaml", "html" } },
+  { "prettier/vim-prettier",           build = "yarn install",                        ft = { "javascript", "typescript", "css", "less", "scss", "json", "graphql", "markdown", "vue", "svelte", "yaml", "html" } },
   { "alvan/vim-closetag" },
   { "rust-lang/rust.vim" },
-  { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
+  { "nvim-telescope/telescope.nvim",   tag = "0.1.4" },
   -- { "fatih/vim-go", build = ":GoUpdateBinaries" }, -- Disabled to use pure LSP
   { "ryanoasis/vim-devicons" },
   { "tpope/vim-fugitive" },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  { 'akinsho/bufferline.nvim',         version = "*",                                 dependencies = 'nvim-tree/nvim-web-devicons' },
   { "pangloss/vim-javascript" },
   { "leafgarland/typescript-vim" },
   { "maxmellon/vim-jsx-pretty" },
@@ -40,18 +40,18 @@ require("lazy").setup({
     priority = 1000,
     opts = {},
   },
-{
-  "github/copilot.vim",
-  event = "InsertEnter",
-  config = function()
-    vim.g.copilot_no_tab_map = true
-    vim.g.copilot_assume_mapped = true
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
 
-    vim.keymap.set("i", "<C-l>", 'copilot#Accept("")', { expr = true, silent = true, replace_keycodes = false })
-    vim.keymap.set("i", "<C-c>", 'copilot#Dismiss()', { expr = true, silent = true })
-  end,
-},
-    -- nvim-cmp & dependencies
+      vim.keymap.set("i", "<C-l>", 'copilot#Accept("")', { expr = true, silent = true, replace_keycodes = false })
+      vim.keymap.set("i", "<C-c>", 'copilot#Dismiss()', { expr = true, silent = true })
+    end,
+  },
+  -- nvim-cmp & dependencies
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -91,16 +91,16 @@ require("lazy").setup({
       require("nvim-autopairs").setup({
         check_ts = true,
         ts_config = {
-          lua = {'string'},-- it will not add a pair on that treesitter node
-          javascript = {'template_string'},
-          java = false,-- don't check treesitter on java
+          lua = { 'string' }, -- it will not add a pair on that treesitter node
+          javascript = { 'template_string' },
+          java = false,       -- don't check treesitter on java
         }
       })
-      
+
       -- Integrate with nvim-cmp
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
-      cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
     end
   },
 
@@ -120,4 +120,4 @@ require("plugins")
 -- Load utilities
 require("utils")
 -- Load autocmds
-require("autocmds") 
+require("autocmds")

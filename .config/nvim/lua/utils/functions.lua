@@ -36,8 +36,8 @@ end
 
 local function is_inside_parentheses(prev_char, next_char)
   return (prev_char == "{" and next_char == "}") or
-         (prev_char == "[" and next_char == "]") or
-         (prev_char == "(" and next_char == ")")
+      (prev_char == "[" and next_char == "]") or
+      (prev_char == "(" and next_char == ")")
 end
 
 local function input_parentheses(parenthesis)
@@ -117,8 +117,8 @@ local function input_bs()
 
   local cursor_is_inside_parentheses = is_inside_parentheses(prev_char, next_char)
   local cursor_is_inside_space = (prev_two_string == "{ " and next_two_string == " }") or
-                                 (prev_two_string == "[ " and next_two_string == " ]") or
-                                 (prev_two_string == "( " and next_two_string == " )")
+      (prev_two_string == "[ " and next_two_string == " ]") or
+      (prev_two_string == "( " and next_two_string == " )")
   local exists_quot = (prev_char == "'" and next_char == "'")
   local exists_double_quot = (prev_char == "\"" and next_char == "\"")
 
@@ -132,7 +132,7 @@ end
 local function clip_in_parentheses(parenthesis)
   local mode = vim.fn.mode()
   local parentheses = { ["{"] = "}", ["["] = "]", ["("] = ")" }
-  
+
   if mode == "v" then
     return "\"ac" .. parenthesis .. "<ESC>\"agpi" .. parentheses[parenthesis]
   elseif mode == "V" then
@@ -151,10 +151,10 @@ local function return_html_format()
   local next_char = get_next_string(1)
   local next_two_string = get_next_string(2)
   local prev_char = get_prev_string(1)
-  
-  if (prev_char == ">" and next_char == "<") or 
-     (prev_char == "{" and next_char == "}") or 
-     (prev_char == "(" and next_char == ")") then
+
+  if (prev_char == ">" and next_char == "<") or
+      (prev_char == "{" and next_char == "}") or
+      (prev_char == "(" and next_char == ")") then
     return "<CR><Up><Esc>A<S-CR>"
   else
     return "<CR>"
@@ -184,4 +184,4 @@ M.clip_in_quot = clip_in_quot
 M.return_html_format = return_html_format
 M.check_back_space = check_back_space
 
-return M 
+return M

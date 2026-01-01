@@ -113,4 +113,4 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
         vim.keymap.set("n", "<F6>", ":RustRun<CR>", { buffer = true, silent = true })
     end
-}) 
+})

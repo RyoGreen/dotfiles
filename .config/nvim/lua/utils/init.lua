@@ -1,4 +1,4 @@
 -- Utilities initialization
 
 -- Load utility functions
-require("utils.functions") 
+require("utils.functions")

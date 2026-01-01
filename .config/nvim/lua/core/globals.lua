@@ -34,4 +34,4 @@ vim.g.rust_analyzer_completion_enable_autoimport = false
 vim.g.NERDTreeShowHidden = 1
 
 -- Copilot
-vim.g.copilot_no_tab_map = true 
+vim.g.copilot_no_tab_map = true

@@ -47,4 +47,4 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 
 -- Performance
 vim.opt.lazyredraw = true
-vim.opt.updatetime = 300 
+vim.opt.updatetime = 300
