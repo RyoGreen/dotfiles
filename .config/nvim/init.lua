@@ -51,6 +51,23 @@ require("lazy").setup({
       vim.keymap.set("i", "<C-c>", 'copilot#Dismiss()', { expr = true, silent = true })
     end,
   },
+  {
+    "numToStr/Comment.nvim",
+    event = "VeryLazy",
+    config = function()
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = "BufReadPost",
+  }
+  ,
+  {
+    "akinsho/git-conflict.nvim",
+    version = "*",
+    event = "BufReadPost",
+  },
   -- nvim-cmp & dependencies
   {
     "hrsh7th/nvim-cmp",
