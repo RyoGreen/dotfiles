@@ -53,20 +53,16 @@ require("lazy").setup({
   },
   {
     "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    config = function()
-    end,
+     event = "VeryLazy",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    event = "BufReadPost",
+     main = "ibl",
   }
   ,
   {
     "akinsho/git-conflict.nvim",
-    version = "*",
-    event = "BufReadPost",
+     version = "*",
   },
   -- nvim-cmp & dependencies
   {
