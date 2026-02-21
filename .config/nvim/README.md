@@ -2,10 +2,6 @@
 
 ## how to setup neovim
 
-### Install tmux
-
-`brew install neovim`
-
 ### install tmux
 
 `brew install tmux`
