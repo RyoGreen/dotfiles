@@ -29,11 +29,6 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 - jetBrain mono
 
-## ag
-
-- https://github.com/ggreer/the_silver_searcher
-- let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
-
 ## ripgrep
 ```
 cargo install ripgrep

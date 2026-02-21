@@ -162,11 +162,19 @@ create_symlinks() {
 # Function to install software
 install_software() {
     log "Installing required software..."
-    
-    # Check if packages are already installed
-    local packages=("neovim" "skhd" "tmux" "fzf")
+
+    local packages=(
+        "neovim"
+        "skhd"
+        "tmux"
+        "fzf"
+        "ripgrep"
+        "fd"
+        "git"
+    )
+
     local to_install=()
-    
+
     for package in "${packages[@]}"; do
         if ! brew list "$package" >/dev/null 2>&1; then
             to_install+=("$package")
@@ -174,22 +182,24 @@ install_software() {
             log "✅ $package already installed"
         fi
     done
-    
-    # Install yabai from tap
+
+    # yabai
     if ! brew list yabai >/dev/null 2>&1; then
-        log "Adding yabai tap..."
         brew tap koekeishiya/formulae || error "Failed to add yabai tap"
         to_install+=("yabai")
-    else
-        log "✅ yabai already installed"
     fi
-    
-    # Install packages
+
     if [ ${#to_install[@]} -gt 0 ]; then
-        log "Installing packages: ${to_install[*]}"
         brew install "${to_install[@]}" || error "Failed to install packages"
     fi
-    
+
+    # Nerd Font
+    brew tap homebrew/cask-fonts 2>/dev/null || true
+    if ! brew list --cask font-jetbrains-mono-nerd-font >/dev/null 2>&1; then
+        brew install --cask font-jetbrains-mono-nerd-font
+        log "✅ JetBrainsMono Nerd Font installed"
+    fi
+
     log "Software installation completed"
 }
 
