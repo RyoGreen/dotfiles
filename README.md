@@ -92,8 +92,3 @@ This repository contains configuration files for macOS, including settings for y
 | `ctrl + alt + a` | Set desktop layout to BSP               |
 | `ctrl + alt + d` | Set desktop layout to floating          |
 | `ctrl + alt + s` | Toggle between BSP and floating layout  |
-
-```
-
-```
-
