@@ -13,7 +13,18 @@ symbol = "+"
 style = "bold purple"
 
 [git_status]
-style = "red"
+staged = "[+](bold green)"
+modified = "[!](bold yellow)"
+untracked = "[?](bold blue)"
+
+ahead = "[⇡](bold cyan)"
+behind = "[⇣](bold red)"
+diverged = "[⇕](bold magenta)"
+
+conflicted = "[✖](bold red)"
+deleted = "[✘](bold red)"
+renamed = "[»](bold purple)"
+stashed = "[≡](bold white)"
 
 [character]
 success_symbol = "[❯](bold green) "
