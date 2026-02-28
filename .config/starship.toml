@@ -8,10 +8,6 @@ truncation_length = 3
 truncate_to_repo = true
 style = "bold cyan"
 
-[git_branch]
-symbol = "+"
-style = "bold purple"
-
 [git_status]
 staged = "[+](bold green)"
 modified = "[!](bold yellow)"
