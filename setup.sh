@@ -312,12 +312,6 @@ verify_installation() {
         fi
     done
     
-    # Check enhancd
-    if [ ! -d "$HOME/enhancd" ]; then
-        warn "enhancd directory not found"
-        success=false
-    fi
-    
     if [ "$success" = true ]; then
         log "✅ All verifications passed"
     else
@@ -335,7 +329,6 @@ main() {
     create_symlinks
     install_software
     setup_fzf
-    install_enhancd
     setup_services
     verify_installation
     
