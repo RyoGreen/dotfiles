@@ -304,7 +304,7 @@ verify_installation() {
     done
     
     # Check software installation
-    local packages=("neovim" "skhd" "yabai" "tmux" "fzf")
+    local packages=("neovim" "skhd" "yabai" "tmux" "fzf" "zoxide" "starship")
     for package in "${packages[@]}"; do
         if ! command_exists "$package"; then
             warn "Package not found in PATH: $package"
