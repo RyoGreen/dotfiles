@@ -251,39 +251,6 @@ setup_fzf() {
     fi
 }
 
-# Function to install enhancd
-install_enhancd() {
-    log "Installing enhancd..."
-    
-    local enhancd_dir="$HOME/enhancd"
-    
-    if [ ! -d "$enhancd_dir" ]; then
-        if git clone https://github.com/babarot/enhancd "$enhancd_dir"; then
-            log "✅ enhancd installed"
-        else
-            error "Failed to install enhancd"
-        fi
-    else
-        log "⚠️  enhancd already exists, skipping installation"
-    fi
-    
-    # Add enhancd to .zshrc
-    local zshrc="$HOME/.zshrc"
-    local enhancd_line="source ~/enhancd/init.sh"
-    
-    if [ ! -f "$zshrc" ]; then
-        log "Creating .zshrc file"
-        touch "$zshrc"
-    fi
-    
-    if ! grep -q "$enhancd_line" "$zshrc" 2>/dev/null; then
-        echo "$enhancd_line" >> "$zshrc"
-        log "✅ enhancd added to .zshrc"
-    else
-        log "⚠️  enhancd already configured in .zshrc"
-    fi
-}
-
 # Function to setup services
 setup_services() {
     log "Setting up yabai and skhd services..."
