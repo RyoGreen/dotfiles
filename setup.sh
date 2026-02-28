@@ -99,6 +99,8 @@ check_dotfiles() {
         ".skhdrc"
         ".yabairc"
         "tmux.conf"
+        ".zshrc"
+        ".config/starship.toml"
     )
     
     for file in "${required_files[@]}"; do
@@ -295,7 +297,7 @@ verify_installation() {
     local success=true
     
     # Check symbolic links
-    local files=(".config/nvim" ".skhdrc" ".yabairc" "tmux.conf")
+    local files=(".config/nvim" ".skhdrc" ".yabairc" "tmux.conf" ".zshrc" ".config/starship.toml")
     for file in "${files[@]}"; do
         if [ ! -L "$HOME/$file" ] || [ ! -e "$HOME/$file" ]; then
             error "Symbolic link verification failed: $file"
