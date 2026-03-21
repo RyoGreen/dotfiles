@@ -65,7 +65,6 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "cr", vim.lsp.buf.references, { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
         vim.keymap.set("n", "<CR>", "<Nop>", { buffer = true })
-        vim.keymap.set("n", "<F6>", ":GoRun<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "<leader>i", ":GoImplement<CR>", { buffer = true })
         vim.keymap.set("n", "<leader>r", ":GoReferrers<CR>", { buffer = true })
     end
@@ -112,6 +111,5 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { buffer = true, silent = true })
         vim.keymap.set("n", "cr", vim.lsp.buf.references, { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
-        vim.keymap.set("n", "<F6>", ":RustRun<CR>", { buffer = true, silent = true })
     end
 })
