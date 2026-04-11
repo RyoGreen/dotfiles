@@ -173,6 +173,7 @@ install_software() {
         "ripgrep"
         "fd"
         "git"
+        "stats"
     )
 
     local to_install=()
