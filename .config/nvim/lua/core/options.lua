@@ -28,7 +28,8 @@ vim.opt.smartcase = true
 -- UI
 vim.opt.number = true
 vim.opt.relativenumber = false
-vim.opt.cursorline = false
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 vim.opt.signcolumn = "yes"
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
