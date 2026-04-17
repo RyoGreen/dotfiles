@@ -33,7 +33,11 @@ path=(
 # Completion (fast)
 # --------------------------------------------------
 autoload -Uz compinit
-compinit -C
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit -C
+else
+  compinit
+fi
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -45,6 +49,9 @@ setopt list_packed
 setopt no_beep
 DIRSTACKSIZE=100
 setopt AUTO_PUSHD
+setopt hist_reduce_blanks
+setopt inc_append_history
+setopt noclobber
 
 # --------------------------------------------------
 # Aliases
@@ -70,19 +77,25 @@ alias python="python3"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+
 # --------------------------------------------------
 # Custom Functions
 # --------------------------------------------------
-
 function select-history() {
-  BUFFER=$(history 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
   CURSOR=$#BUFFER
 }
+
 zle -N select-history
 bindkey '^r' select-history
 
-function cdi() {
-  dir=$( (zoxide query -l; ls -d */ 2>/dev/null) | sort -u | fzf --height 40% --reverse )
-  [ -n "$dir" ] && builtin cd "$dir"
+function cd() {
+  if [ $# -eq 0 ]; then
+    dir=$(zoxide query -l | fzf)
+    [ -n "$dir" ] && builtin cd "$dir"
+  else
+    builtin cd "$@"
+  fi
 }
 
