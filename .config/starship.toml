@@ -31,6 +31,7 @@ disabled = true
 
 [rust]
 disabled = true
+format = " [🦀 $version](red)"
 
 [gcloud]
 disabled = true
