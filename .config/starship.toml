@@ -4,7 +4,7 @@ $character
 """
 
 [directory]
-truncation_length = 3
+truncation_length = 1
 truncate_to_repo = true
 style = "bold cyan"
 
@@ -23,14 +23,15 @@ renamed = "[»](bold purple)"
 stashed = "[≡](bold white)"
 
 [character]
-success_symbol = "[❯](bold green) "
-error_symbol   = "[❯](bold red) "
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
 
 [package]
 disabled = true
 
 [rust]
 disabled = true
+format = " [🦀 $version](red)"
 
 [gcloud]
 disabled = true
