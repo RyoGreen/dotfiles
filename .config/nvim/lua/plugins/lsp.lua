@@ -1,5 +1,11 @@
 -- LSP configuration
 
+-- Advertise nvim-cmp completion capabilities to every server (0.11 API)
+local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+if ok_cmp then
+    vim.lsp.config('*', { capabilities = cmp_lsp.default_capabilities() })
+end
+
 vim.lsp.enable('gopls')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ts_ls')
@@ -49,17 +55,20 @@ local function setup_lsp_keymaps(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, opts)
+    vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, opts)
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 end
 
--- LSP on_attach function
-local function on_attach(client, bufnr)
-    setup_lsp_keymaps(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    print(string.format("LSP client '%s' attached to buffer %d with COC-style keymaps", client.name, bufnr))
-end
+-- Wire the keymaps on every LSP attach
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        local bufnr = args.buf
+        setup_lsp_keymaps(client, bufnr)
+        vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    end,
+})
 
 -- Diagnostic config
 vim.diagnostic.config({
@@ -72,7 +81,7 @@ vim.diagnostic.config({
 
 -- Debug commands for LSP
 vim.api.nvim_create_user_command('LspDebug', function()
-    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
     if #clients == 0 then
         print("No LSP clients attached to current buffer")
     else
@@ -85,7 +94,7 @@ vim.api.nvim_create_user_command('LspDebug', function()
 end, {})
 
 vim.api.nvim_create_user_command('LspRestart', function()
-    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
     for _, client in ipairs(clients) do
         vim.lsp.stop_client(client.id)
     end

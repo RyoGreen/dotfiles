@@ -43,7 +43,15 @@ require("lazy").setup({
       "html",
     },
   },
-  { "alvan/vim-closetag" },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
   { "rust-lang/rust.vim" },
   { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
 
@@ -62,7 +70,6 @@ require("lazy").setup({
   { "leafgarland/typescript-vim" },
   { "maxmellon/vim-jsx-pretty" },
   { "jparise/vim-graphql" },
-
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -79,7 +86,13 @@ require("lazy").setup({
       })
     end,
   },
-
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
+  { "nvim-lualine/lualine.nvim",       dependencies = "nvim-tree/nvim-web-devicons" },
+  { "lewis6991/gitsigns.nvim" },
+  { "folke/which-key.nvim",            event = "VeryLazy" },
+  { "stevearc/conform.nvim" },
+  { "folke/trouble.nvim",              dependencies = "nvim-tree/nvim-web-devicons" },
   { "nvimdev/dashboard-nvim" },
 
   {

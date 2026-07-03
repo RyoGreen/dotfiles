@@ -23,11 +23,7 @@ vim.g.ackprg = 'ag --nogroup --nocolor --column'
 -- Prettier
 vim.g['prettier#autoformat'] = 1
 
--- Closetag
-vim.g.closetag_filenames = '*.html,*.xhtml,*.phtml,*.tpl'
-
--- Rust
-vim.g.rustfmt_autosave = 1
+-- Rust (formatting on save is handled by conform.nvim -> rust_analyzer)
 vim.g.rust_analyzer_completion_enable_autoimport = false
 
 -- NERDTree (if still using)

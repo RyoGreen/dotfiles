@@ -8,6 +8,7 @@ telescope.setup({
       "%target/",
       "%.git/",
       "dist/",
+      ".next/",
     },
 
     border = true,
@@ -32,6 +33,7 @@ telescope.setup({
     find_files = {
       hidden = true,
       previewer = false,
+      no_ignore = true,
     },
     live_grep = {
       previewer = true,

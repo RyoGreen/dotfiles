@@ -17,33 +17,12 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "setlocal iskeyword+=@-@",
 })
 
--- Auto format on save for TypeScript/JavaScript files (use Prettier synchronously)
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-    callback = function()
-        -- Always use Prettier so it matches .prettierrc exactly
-        vim.cmd("silent! Prettier")
-    end,
-})
+-- Formatting on save is handled by conform.nvim (see plugins/conform.lua)
 
 -- Input functions (using utils.functions module)
+-- NOTE: insert-mode auto-pairing is handled by nvim-autopairs; only the
+-- visual-mode "wrap selection" helpers below use these custom functions.
 local func = require('utils.functions')
-
-vim.keymap.set("i", "{", function() return func.input_parentheses("{") end, { expr = true })
-vim.keymap.set("i", "[", function() return func.input_parentheses("[") end, { expr = true })
-vim.keymap.set("i", "(", function() return func.input_parentheses("(") end, { expr = true })
-
-vim.keymap.set("i", "}", function() return func.input_close_parenthesis("}") end, { expr = true })
-vim.keymap.set("i", "]", function() return func.input_close_parenthesis("]") end, { expr = true })
-vim.keymap.set("i", ")", function() return func.input_close_parenthesis(")") end, { expr = true })
-
-vim.keymap.set("i", "'", function() return func.input_quot("'") end, { expr = true })
-vim.keymap.set("i", "\"", function() return func.input_quot("\"") end, { expr = true })
-vim.keymap.set("i", "`", function() return func.input_quot("`") end, { expr = true })
-
--- Removed conflicting Enter key mappings
-vim.keymap.set("i", "<Space>", function() return func.input_space() end, { expr = true })
-vim.keymap.set("i", "<BS>", function() return func.input_bs() end, { expr = true })
 
 -- Visual mode mappings
 vim.keymap.set("x", "{", function() return func.clip_in_parentheses("{") end, { expr = true })
