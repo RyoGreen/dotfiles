@@ -362,7 +362,3 @@ vim.keymap.set('n', 'sd', function()
     vim.cmd('bufdo bd')
     vim.cmd('Dashboard')
 end, { silent = true })
-
--- Floaterm highlighting
-vim.cmd('hi Floaterm guibg=black')
-vim.cmd('hi FloatermBorder guibg=orange guifg=cyan')

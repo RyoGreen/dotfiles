@@ -8,12 +8,7 @@ function M.setup()
     -- Enable LSP completion
     vim.opt.completeopt = "menu,menuone,noselect"
 
-    -- Simple completion key mappings
-    -- Use default Neovim completion behavior
-    vim.keymap.set("i", "<C-Space>", "<C-x><C-o>", {silent = true, noremap = true})
-    
-    -- Tab and Enter work normally
-    -- LSP completion will trigger automatically when typing
+    -- Completion menu/keys are owned by nvim-cmp (see init.lua)
 end
 
 return M 
