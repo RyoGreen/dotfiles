@@ -1,7 +1,7 @@
 -- Plugin configuration initialization
 
 -- Load all plugin configurations
-require("plugins.telescope")
+require("plugins.fzf")
 require("plugins.treesitter")
 require("plugins.mason")
 require("plugins.lsp")
