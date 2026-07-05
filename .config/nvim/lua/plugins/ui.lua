@@ -156,12 +156,6 @@ if status then
             ignore_list = {},
         },
 
-        -- System open
-        system_open = {
-            cmd = "",
-            args = {},
-        },
-
         -- Diagnostics
         diagnostics = {
             enable = false,
