@@ -2,8 +2,8 @@
 -- Recommended defaults + tokyonight (moon) harmonized appearance
 
 -- Window geometry / behavior
-vim.g.floaterm_width = 0.8            -- 80% of editor width
-vim.g.floaterm_height = 0.8           -- 80% of editor height
+vim.g.floaterm_width = 0.9            -- 90% of editor width
+vim.g.floaterm_height = 0.9           -- 90% of editor height
 vim.g.floaterm_position = "center"    -- center the floating window
 vim.g.floaterm_title = "floaterm: $1/$2" -- show current/total in the title
 vim.g.floaterm_borderchars = "─│─│╭╮╯╰" -- rounded corners
@@ -25,4 +25,17 @@ set_floaterm_hl()
 vim.api.nvim_create_autocmd("ColorScheme", {
     pattern = "*",
     callback = set_floaterm_hl,
+})
+
+-- Keep the floating terminal aligned when the editor is resized.
+-- floaterm computes its geometry when the window is opened, so if it is
+-- open while the OS/tmux pane is resized (e.g. split to half) it keeps the
+-- old size and drifts off-center. Recompute it on VimResized.
+vim.api.nvim_create_autocmd("VimResized", {
+    pattern = "*",
+    callback = function()
+        if vim.bo.filetype == "floaterm" then
+            vim.cmd("FloatermUpdate --width=0.9 --height=0.9 --position=center")
+        end
+    end,
 })

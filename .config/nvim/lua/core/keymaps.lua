@@ -47,13 +47,20 @@ map("n", "<leader>f", ":NvimTreeFindFile<CR>", opts)
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", opts)
 map("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 
--- Telescope
-map("n", "<C-f>", "<cmd>Telescope find_files<CR>", opts)
-map("n", "<C-l>", "<cmd>Telescope live_grep<CR>", opts)
-map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", opts)
-map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
-map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
-map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", opts)
+-- fzf-lua
+map("n", "<C-f>", "<cmd>FzfLua files<CR>", opts)
+map("n", "<leader>fa", function()
+    require("fzf-lua").files({
+        fd_opts = "--color=never --type f --hidden --no-ignore --follow "
+            .. "--exclude .git --exclude node_modules --exclude dist "
+            .. "--exclude .next --exclude target",
+    })
+end, opts)
+map("n", "<C-l>", "<cmd>FzfLua live_grep<CR>", opts)
+map("n", "<leader>bb", "<cmd>FzfLua buffers<CR>", opts)
+map("n", "<leader>ls", "<cmd>FzfLua lsp_document_symbols<CR>", opts)
+map("n", "<leader>lS", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", opts)
+map("n", "<leader>gb", "<cmd>FzfLua git_branches<CR>", opts)
 
 -- Language-specific mappings
 -- Go mappings

@@ -53,7 +53,7 @@ require("lazy").setup({
     ft = { "markdown" },
   },
   { "rust-lang/rust.vim" },
-  { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
+  { "ibhagwan/fzf-lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
   -- { "fatih/vim-go", build = ":GoUpdateBinaries" },
   { "ryanoasis/vim-devicons" },

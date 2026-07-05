@@ -16,9 +16,9 @@ if status then
                 '',
             },
             center = {
-                { icon = '  ', desc = 'Find File                 ', action = 'Telescope find_files', shortcut = 'SPC f f' },
-                { icon = '  ', desc = 'Find Word                 ', action = 'Telescope live_grep', shortcut = 'SPC f w' },
-                { icon = '  ', desc = 'Recent Files              ', action = 'Telescope oldfiles', shortcut = 'SPC f r' },
+                { icon = '  ', desc = 'Find File                 ', action = 'FzfLua files', shortcut = 'SPC f f' },
+                { icon = '  ', desc = 'Find Word                 ', action = 'FzfLua live_grep', shortcut = 'SPC f w' },
+                { icon = '  ', desc = 'Recent Files              ', action = 'FzfLua oldfiles', shortcut = 'SPC f r' },
                 { icon = '  ', desc = 'Open GitHub Repo          ', action = 'lua require("custom").open_github()', shortcut = 'SPC g o' },
                 { icon = '⚙️ ', desc = 'Open Settings             ', action = ':e ~/.config/nvim/init.lua', shortcut = 'SPC s e' },
             },
