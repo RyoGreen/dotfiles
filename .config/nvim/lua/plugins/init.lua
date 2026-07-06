@@ -13,7 +13,6 @@ require("plugins.gitsigns")
 require("plugins.indent-blankline")
 require("plugins.floaterm")
 require("plugins.lualine")
-require("plugins.which-key")
 require("plugins.conform")
 require("plugins.trouble")
 -- Load completion setup

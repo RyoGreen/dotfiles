@@ -90,7 +90,6 @@ require("lazy").setup({
   { "williamboman/mason-lspconfig.nvim" },
   { "nvim-lualine/lualine.nvim",       dependencies = "nvim-tree/nvim-web-devicons" },
   { "lewis6991/gitsigns.nvim" },
-  { "folke/which-key.nvim",            event = "VeryLazy" },
   { "stevearc/conform.nvim" },
   { "folke/trouble.nvim",              dependencies = "nvim-tree/nvim-web-devicons" },
   { "nvimdev/dashboard-nvim" },

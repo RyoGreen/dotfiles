@@ -54,10 +54,10 @@ local function setup_lsp_keymaps(client, bufnr)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts)
+    vim.keymap.set('n', '<space>lf', vim.lsp.buf.format, opts)
     vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, opts)
     vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, opts)
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '<space>le', vim.diagnostic.open_float, opts)
 end
 
 -- Wire the keymaps on every LSP attach
