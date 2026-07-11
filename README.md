@@ -1,94 +1,61 @@
 # dotfiles for macOS
 
-This repository contains configuration files for macOS, including settings for yabai, skhd, neovim, tmux, and more.
+Config files for yabai + skhd, Neovim, tmux, Zsh, and Starship.
+Run `./setup.sh` to symlink everything and install the required packages.
 
-## Setup
+Requires macOS with [Homebrew](https://brew.sh). Leader key in Neovim is `Space`.
 
-## Required Tools
+## Contents
+
+| File / Dir              | Purpose                          |
+|-------------------------|----------------------------------|
+| `.yabairc`              | yabai (tiling window manager)    |
+| `.skhdrc`               | skhd (hotkeys)                   |
+| `.config/nvim/`         | Neovim (lazy.nvim, LSP, fzf-lua) |
+| `tmux.conf`             | tmux                             |
+| `.zshrc`                | Zsh                              |
+| `.config/starship.toml` | Starship prompt                  |
+
+## Neovim
+
+| Shortcut          | Action                        |
+|-------------------|-------------------------------|
+| `space e`         | Toggle file tree (nvim-tree)  |
+| `space f`         | Reveal current file in tree   |
+| `space a`         | Find files (fzf, incl. ignored)|
+| `Ctrl-f`          | Find files (fzf)              |
+| `Ctrl-l`          | Live grep (fzf)               |
+| `space bb`        | Switch buffer (fzf)           |
+| `space F`         | Format buffer (conform)       |
+| `Tab` / `Shift-Tab` | Next / prev buffer          |
+| `space t t`       | Toggle floating terminal      |
+| `sv` / `sn`       | Split vertical / horizontal   |
+| `Ctrl-s`          | Save                          |
+| `gd` / `Ctrl-]`   | Go to implementation / definition |
 
 ## Keyboard Shortcuts (.skhdrc)
 
-### Terminal and App Launch
+All shortcuts control yabai.
 
-| **Shortcut** | **Action**                     |
-|--------------|-------------------------------|
-| `cmd + return`     | Open Kitty terminal              |
-| `shift + cmd + m`  | Open clipboard URL with mpv      |
+| Shortcut                | Action                      |
+|-------------------------|-----------------------------|
+| `alt - h/j/k/l`         | Focus west/south/north/east |
+| `alt - x`               | Focus most recent window    |
+| `alt - z / c`           | Focus prev / next in stack  |
+| `alt - f`               | Toggle fullscreen zoom      |
+| `shift + alt - h/j/k/l` | Swap window                 |
+| `shift + cmd - h/j/k/l` | Warp window                 |
+| `cmd + alt - 1..9,0`    | Focus space 1–10            |
+| `cmd + alt - x/z/c`     | Focus recent / prev / next space |
+| `shift + cmd - x`       | Send window to recent space |
+| `ctrl + alt - 1..3`     | Focus display 1–3           |
+| `ctrl + cmd - 1..3`     | Send window to display 1–3  |
 
-### Window Focus
+## tmux
 
-| **Shortcut** | **Action**                           |
-|--------------|--------------------------------------|
-| `alt + x`          | Focus most recent window          |
-| `alt + h`          | Focus west (left) window          |
-| `alt + j`          | Focus south (down) window         |
-| `alt + k`          | Focus north (up) window           |
-| `alt + l`          | Focus east (right) window         |
-| `alt + z`          | Focus previous stack window       |
-| `alt + c`          | Focus next stack window           |
+Prefix is `C-g`. `prefix + v` / `s` to split, `h/j/k/l` to move between panes.
 
-### Window Swap
+## Zsh
 
-| **Shortcut**      | **Action**                        |
-|-------------------|-----------------------------------|
-| `shift + alt + x` | Swap with most recent window      |
-| `shift + alt + h` | Swap with west (left) window      |
-| `shift + alt + j` | Swap with south (down) window     |
-| `shift + alt + k` | Swap with north (up) window       |
-| `shift + alt + l` | Swap with east (right) window     |
-
-### Window Move
-
-| **Shortcut**      | **Action**                      |
-|-------------------|---------------------------------|
-| `shift + cmd + h` | Move window to west (left)      |
-| `shift + cmd + j` | Move window to south (down)     |
-| `shift + cmd + k` | Move window to north (up)       |
-| `shift + cmd + l` | Move window to east (right)     |
-
-### Window Resize
-
-| **Shortcut**          | **Action**                           |
-|-----------------------|--------------------------------------|
-| `shift + alt + 0`     | Evenly adjust window size            |
-| `alt + b`             | Evenly adjust window size            |
-| `shift + alt + up`    | Maximize floating window             |
-| `shift + alt + left`  | Expand floating window to left half  |
-| `shift + alt + right` | Expand floating window to right half |
-
-### Desktop Operations
-
-| **Shortcut**         | **Action**                                 |
-|----------------------|--------------------------------------------|
-| `cmd + alt + n`      | Create and focus new desktop               |
-| `cmd + alt + w`      | Switch to previous desktop and destroy current |
-| `cmd + alt + x`      | Focus most recent desktop                  |
-| `cmd + alt + z`      | Focus previous desktop                     |
-| `cmd + alt + c`      | Focus next desktop                         |
-| `cmd + alt + 1-9, 0` | Focus desktop 1-10                         |
-
-### Multi-Monitor Operations
-
-| **Shortcut**     | **Action**                                          |
-|------------------|-----------------------------------------------------|
-| `ctrl + cmd + x` | Move window to most recent monitor and focus        |
-| `ctrl + cmd + z` | Move window to previous monitor and focus           |
-| `ctrl + cmd + c` | Move window to next monitor and focus               |
-| `ctrl + cmd + 1` | Move window to monitor 1 and focus                  |
-| `ctrl + cmd + 2` | Move window to monitor 2 and focus                  |
-| `ctrl + cmd + 3` | Move window to monitor 3 and focus                  |
-
-### Window Adjustments and Toggles
-
-| **Shortcut**     | **Action**                              |
-|------------------|-----------------------------------------|
-| `alt + r`        | Rotate window tree 90 degrees           |
-| `alt + y`        | Flip window tree along Y axis           |
-| `alt + x`        | Flip window tree along X axis           |
-| `alt + t`        | Toggle window floating/unfloating       |
-| `alt + s`        | Toggle window sticky mode               |
-| `alt + o`        | Toggle window always on top             |
-| `alt + p`        | Toggle picture-in-picture mode          |
-| `ctrl + alt + a` | Set desktop layout to BSP               |
-| `ctrl + alt + d` | Set desktop layout to floating          |
-| `ctrl + alt + s` | Toggle between BSP and floating layout  |
+`cd` with no argument opens a [zoxide](https://github.com/ajeetdsouza/zoxide)
+picker; `Ctrl-r` searches history via fzf.

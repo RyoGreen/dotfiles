@@ -39,7 +39,6 @@ local function setup_lsp_keymaps(client, bufnr)
     -- COC-style key mappings
     vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, opts)  -- Definition jump
     vim.keymap.set('n', 'gd', vim.lsp.buf.implementation, opts) -- Implementation jump
-    vim.keymap.set('n', 'cr', vim.lsp.buf.references, opts)     -- References
     vim.keymap.set('n', '<C-t>', '<C-o>', opts)                 -- Jump back
 
     -- Additional LSP mappings
