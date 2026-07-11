@@ -4,7 +4,7 @@ local map = vim.keymap.set
 local opts = { silent = true }
 
 -- Basic navigation
-map("n", "te", ":tabedit<CR>", opts)
+map("n", "<leader>te", ":tabedit<CR>", opts)
 map("n", "<S-Tab>", ":tabprev<CR>", opts)
 map("n", "<Tab>", ":tabnext<CR>", opts)
 map("n", "sv", ":vsplit<CR><C-w><C-w>", opts)
@@ -20,8 +20,6 @@ map("n", "<C-q>", ":bp|sp|bn|bd<CR>", opts)
 -- File operations
 map("n", "<C-s>", ":w<CR>", opts)
 map("i", "<C-s>", "<C-c>:w<CR>", opts)
-map("n", "<C-b>", ":wq!<CR>", opts)
-map("i", "<C-b>", "<Esc>:wq!<CR>", opts)
 
 -- Additional mappings
 map("n", "<C-j>", "<Esc>$a<CR>", opts)
@@ -31,8 +29,8 @@ map("i", "<C-h>", "<Esc>$a", opts)
 map("i", "<S-CR>", "<Esc>$a<CR>", opts)
 
 -- Floaterm
-map("n", "ww", ":FloatermToggle<CR>", opts)
-map("t", "ww", "<C-\\><C-n>:FloatermToggle<CR>", opts)
+map("n", "<leader>tt", ":FloatermToggle<CR>", opts)
+map("t", "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>", opts)
 
 map("n", "<F7>", ":FloatermNew<CR>", opts)
 map("t", "<F7>", "<C-\\><C-n>:FloatermNew<CR>", opts)
@@ -49,7 +47,7 @@ map("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 
 -- fzf-lua
 map("n", "<C-f>", "<cmd>FzfLua files<CR>", opts)
-map("n", "<leader>fa", function()
+map("n", "<leader>a", function()
     require("fzf-lua").files({
         fd_opts = "--color=never --type f --hidden --no-ignore --follow "
             .. "--exclude .git --exclude node_modules --exclude dist "
@@ -69,7 +67,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = true, silent = true })
         vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { buffer = true, silent = true })
-        vim.keymap.set("n", "cr", vim.lsp.buf.references, { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
         vim.keymap.set("n", "<CR>", "<Nop>", { buffer = true })
         vim.keymap.set("n", "<leader>i", ":GoImplement<CR>", { buffer = true })
@@ -83,7 +80,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = true, silent = true })
         vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { buffer = true, silent = true })
-        vim.keymap.set("n", "cr", vim.lsp.buf.references, { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
     end
 })
@@ -94,7 +90,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = true, silent = true })
         vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { buffer = true, silent = true })
-        vim.keymap.set("n", "cr", vim.lsp.buf.references, { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
     end
 })
@@ -105,7 +100,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = true, silent = true })
         vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { buffer = true, silent = true })
-        vim.keymap.set("n", "cr", vim.lsp.buf.references, { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
     end
 })
@@ -116,7 +110,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = true, silent = true })
         vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { buffer = true, silent = true })
-        vim.keymap.set("n", "cr", vim.lsp.buf.references, { buffer = true, silent = true })
         vim.keymap.set("n", "<C-t>", "<C-o>", { buffer = true })
     end
 })

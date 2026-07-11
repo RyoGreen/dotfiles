@@ -26,12 +26,14 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 - jetBrain mono
 
 ## ripgrep
+
 ```
 cargo install ripgrep
 
 ```
 
 ## fd
+
 ```
 cargo install fd-find
 ```
@@ -41,4 +43,3 @@ cargo install fd-find
 ## short cut key
 
 - close tab -> [view:Close Editor] When:- Source:User
-
