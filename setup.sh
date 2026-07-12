@@ -3,6 +3,34 @@
 # Exit on any error, undefined variable, or pipe failure
 set -euo pipefail
 
+# Dotfiles directory
+DOTFILES_DIR=~/dotfiles
+
+# Symlinks as "source-in-repo:link-in-HOME" pairs.
+# Single source of truth used by check/create/verify (bash 3.2: no assoc arrays).
+LINKS=(
+    ".config/nvim:.config/nvim"
+    ".skhdrc:.skhdrc"
+    ".yabairc:.yabairc"
+    "tmux.conf:.tmux.conf"
+    ".zshrc:.zshrc"
+    ".config/starship.toml:.config/starship.toml"
+)
+
+# Homebrew formulae to install
+PACKAGES=(
+    "neovim"
+    "skhd"
+    "tmux"
+    "fzf"
+    "ripgrep"
+    "fd"
+    "git"
+    "stats"
+    "zoxide"
+    "starship"
+)
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -85,79 +113,62 @@ check_homebrew() {
 
 # Function to check dotfiles directory
 check_dotfiles() {
-    DOTFILES_DIR=~/dotfiles
-    
     if [ ! -d "$DOTFILES_DIR" ]; then
         error "Dotfiles directory not found at $DOTFILES_DIR"
     fi
-    
+
     log "Dotfiles directory found at: $DOTFILES_DIR"
-    
-    # Validate required files exist
-    local required_files=(
-        ".config/nvim"
-        ".skhdrc"
-        ".yabairc"
-        "tmux.conf"
-        ".zshrc"
-        ".config/starship.toml"
-    )
-    
-    for file in "${required_files[@]}"; do
-        validate_file "$DOTFILES_DIR/$file"
+
+    # Validate required source files exist (from shared LINKS list)
+    for entry in "${LINKS[@]}"; do
+        local src="${entry%%:*}"
+        validate_file "$DOTFILES_DIR/$src"
     done
-    
+
     log "All required dotfiles found"
 }
 
 # Function to create symbolic links
 create_symlinks() {
-    DOTFILES_DIR=~/dotfiles
-    
-    local files=(
-        ".config/nvim"
-        ".skhdrc"
-        ".yabairc"
-        "tmux.conf"
-    )
-    
     log "Creating symbolic links..."
-    
-    for file in "${files[@]}"; do
-        local target="$DOTFILES_DIR/$file"
-        local link="$HOME/$file"
-        
+
+    for entry in "${LINKS[@]}"; do
+        local src="${entry%%:*}"
+        local dst="${entry##*:}"
+        local target="$DOTFILES_DIR/$src"
+        local link="$HOME/$dst"
+
         # Create parent directory if it doesn't exist
-        if [[ "$file" == *"/"* ]]; then
+        if [[ "$dst" == *"/"* ]]; then
             local parent_dir=$(dirname "$link")
             if [ ! -d "$parent_dir" ]; then
                 log "Creating directory: $parent_dir"
                 mkdir -p "$parent_dir"
             fi
         fi
-        
+
         # Backup existing file/directory
         backup_file "$link"
-        
+
         # Remove existing file/directory if it exists
-        if [ -e "$link" ]; then
+        if [ -e "$link" ] || [ -L "$link" ]; then
             log "Removing existing: $link"
             rm -rf "$link"
         fi
-        
+
         # Create symbolic link
         if ln -sf "$target" "$link"; then
-            log "✅ Linked $file"
+            log "✅ Linked $src -> $link"
         else
-            error "Failed to create symbolic link for $file"
+            error "Failed to create symbolic link for $src"
         fi
-        
+
         # Verify the link was created correctly
         if [ ! -L "$link" ] || [ ! -e "$link" ]; then
-            error "Symbolic link verification failed for $file"
+            error "Symbolic link verification failed for $dst"
         fi
     done
-    
+
     log "All symbolic links created successfully"
 }
 
@@ -165,20 +176,9 @@ create_symlinks() {
 install_software() {
     log "Installing required software..."
 
-    local packages=(
-        "neovim"
-        "skhd"
-        "tmux"
-        "fzf"
-        "ripgrep"
-        "fd"
-        "git"
-        "stats"
-    )
-
     local to_install=()
 
-    for package in "${packages[@]}"; do
+    for package in "${PACKAGES[@]}"; do
         if ! brew list "$package" >/dev/null 2>&1; then
             to_install+=("$package")
         else
@@ -207,36 +207,47 @@ install_software() {
 }
 
 # Install LSP language servers for better code navigation
-log "Installing LSP language servers..."
+install_lsp_servers() {
+    log "Installing LSP language servers..."
 
-# Install gopls for Go
-if ! command -v gopls &> /dev/null; then
-    log "Installing gopls..."
-    go install golang.org/x/tools/gopls@latest
-    log "✅ gopls installed"
-else
-    log "✅ gopls already installed"
-fi
-
-# Install TypeScript language server
-if ! command -v typescript-language-server &> /dev/null; then
-    log "Installing TypeScript language server..."
-    npm install -g typescript typescript-language-server
-    log "✅ TypeScript language server installed"
-else
-    log "✅ TypeScript language server already installed"
-fi
-
-# Install Rust analyzer (if Rust is installed)
-if command -v rustc &> /dev/null; then
-    if ! command -v rust-analyzer &> /dev/null; then
-        log "Installing rust-analyzer..."
-        rustup component add rust-analyzer
-        log "✅ rust-analyzer installed"
+    # Install gopls for Go
+    if command_exists go; then
+        if ! command_exists gopls; then
+            log "Installing gopls..."
+            go install golang.org/x/tools/gopls@latest && log "✅ gopls installed" \
+                || warn "Failed to install gopls"
+        else
+            log "✅ gopls already installed"
+        fi
     else
-        log "✅ rust-analyzer already installed"
+        warn "go not found, skipping gopls"
     fi
-fi
+
+    # Install TypeScript language server
+    if command_exists npm; then
+        if ! command_exists typescript-language-server; then
+            log "Installing TypeScript language server..."
+            npm install -g typescript typescript-language-server \
+                && log "✅ TypeScript language server installed" \
+                || warn "Failed to install TypeScript language server"
+        else
+            log "✅ TypeScript language server already installed"
+        fi
+    else
+        warn "npm not found, skipping TypeScript language server"
+    fi
+
+    # Install Rust analyzer (if Rust is installed)
+    if command_exists rustc; then
+        if ! command_exists rust-analyzer; then
+            log "Installing rust-analyzer..."
+            rustup component add rust-analyzer && log "✅ rust-analyzer installed" \
+                || warn "Failed to install rust-analyzer"
+        else
+            log "✅ rust-analyzer already installed"
+        fi
+    fi
+}
 
 # Function to setup fzf
 setup_fzf() {
@@ -296,16 +307,16 @@ verify_installation() {
     log "Verifying installation..."
     
     local success=true
-    
-    # Check symbolic links
-    local files=(".config/nvim" ".skhdrc" ".yabairc" "tmux.conf" ".zshrc" ".config/starship.toml")
-    for file in "${files[@]}"; do
-        if [ ! -L "$HOME/$file" ] || [ ! -e "$HOME/$file" ]; then
-            error "Symbolic link verification failed: $file"
+
+    # Check symbolic links (from shared LINKS list)
+    for entry in "${LINKS[@]}"; do
+        local dst="${entry##*:}"
+        if [ ! -L "$HOME/$dst" ] || [ ! -e "$HOME/$dst" ]; then
+            warn "Symbolic link verification failed: $dst"
             success=false
         fi
     done
-    
+
     # Check software installation
     local packages=("neovim" "skhd" "yabai" "tmux" "fzf" "zoxide" "starship")
     for package in "${packages[@]}"; do
@@ -331,6 +342,7 @@ main() {
     check_dotfiles
     create_symlinks
     install_software
+    install_lsp_servers
     setup_fzf
     setup_services
     verify_installation
