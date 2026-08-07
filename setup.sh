@@ -10,6 +10,7 @@ DOTFILES_DIR=~/dotfiles
 # Single source of truth used by check/create/verify (bash 3.2: no assoc arrays).
 LINKS=(
     ".config/nvim:.config/nvim"
+    ".config/yabai:.config/yabai"
     ".skhdrc:.skhdrc"
     ".yabairc:.yabairc"
     "tmux.conf:.tmux.conf"
