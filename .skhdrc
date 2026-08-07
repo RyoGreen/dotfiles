@@ -53,9 +53,10 @@ ctrl + alt - 2  : yabai -m display --focus 2
 ctrl + alt - 3  : yabai -m display --focus 3
 
 # send window to the next monitor and follow focus
-# The everyday one, kept to a single easy chord. next falls back to first, so
-# this wraps: a toggle on two displays, a cycle on three.
-alt - d : ~/.config/yabai/win-to-display.sh next first
+# The everyday one, kept to a single easy chord: left-hand modifier, right-hand
+# key, same shape as alt - hjkl. next falls back to first, so this wraps —
+# a toggle on two displays, a cycle on three.
+alt - m : ~/.config/yabai/win-to-display.sh next first
 
 # send window to a specific monitor and follow focus
 ctrl + cmd - 1  : ~/.config/yabai/win-to-display.sh 1
