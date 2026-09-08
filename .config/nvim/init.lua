@@ -115,12 +115,10 @@ require("lazy").setup({
         { expr = true, silent = true, replace_keycodes = false }
       )
 
-      vim.keymap.set(
-        "i",
-        "<C-c>",
-        "copilot#Dismiss()",
-        { expr = true, silent = true }
-      )
+      vim.keymap.set("i", "<C-c>", function()
+        vim.fn["copilot#Dismiss"]()
+        return "<C-c>"
+      end, { expr = true, silent = true })
     end,
   },
 

@@ -7,7 +7,7 @@ vim.g.floaterm_height = 0.9           -- 90% of editor height
 vim.g.floaterm_position = "center"    -- center the floating window
 vim.g.floaterm_title = "floaterm: $1/$2" -- show current/total in the title
 vim.g.floaterm_borderchars = "─│─│╭╮╯╰" -- rounded corners
-vim.g.floaterm_autoinsert = 1         -- enter terminal-insert mode automatically
+vim.g.floaterm_autoinsert = "always" -- enter terminal-insert mode automatically
 vim.g.floaterm_autoclose = 1          -- close the window when the job exits successfully
 vim.g.floaterm_opener = "edit"        -- open files (e.g. from lf/ranger) in the current window
 
@@ -35,7 +35,12 @@ vim.api.nvim_create_autocmd("VimResized", {
     pattern = "*",
     callback = function()
         if vim.bo.filetype == "floaterm" then
-            vim.cmd("FloatermUpdate --width=0.9 --height=0.9 --position=center")
+            vim.cmd(string.format(
+                "FloatermUpdate --width=%s --height=%s --position=%s",
+                vim.g.floaterm_width,
+                vim.g.floaterm_height,
+                vim.g.floaterm_position
+            ))
         end
     end,
 })

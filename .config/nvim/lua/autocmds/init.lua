@@ -19,6 +19,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Formatting on save is handled by conform.nvim (see plugins/conform.lua)
 
+-- Terminal windows
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "*",
+    callback = function()
+        vim.opt_local.cursorline = false
+        vim.opt_local.cursorcolumn = false
+    end,
+})
+
 -- Input functions (using utils.functions module)
 -- NOTE: insert-mode auto-pairing is handled by nvim-autopairs; only the
 -- visual-mode "wrap selection" helpers below use these custom functions.
